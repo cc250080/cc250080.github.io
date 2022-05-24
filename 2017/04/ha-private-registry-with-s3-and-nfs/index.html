@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "HA Private Registry with S3 and NFS",
+  
+  "image": "https://cc250080.github.io/img/aws-for-docker-long.png",
+  
+  "datePublished": "2017-04-18T00:00:00Z",
+  "dateModified": "2017-04-18T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "Carles Cortes Costa",
+    
+    "image": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/cc250080.github.io\/2017\/04\/ha-private-registry-with-s3-and-nfs\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CARLES BLOG",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    }
+    
+  },
+  "description": "Stateless is used as a solution for everything nowadays: scale, containerize, make fault tolerant\u0026hellip; But it is a reality that not everything can be stateless, even if you store the configurations inside the containers, you need to store static files somewhere, you need databases that are stateful by definition, and not all the tools that you will be using are created to be stateless.\n",
+  "keywords": ["Docker, DevOps, Docker Swarm, Swarm, Debug, AWS, Minio, Registry, S3, Swarm Service"]
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.99.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Carles Cortes Costa">
+<meta name="keywords" content="Docker, DevOps, Docker Swarm, Swarm, Debug, AWS, Minio, Registry, S3, Swarm Service">
+<meta name="description" content="Stateless is used as a solution for everything nowadays: scale, containerize, make fault tolerant&hellip; But it is a reality that not everything can be stateless, even if you store the configurations inside the containers, you need to store static files somewhere, you need databases that are stateful by definition, and not all the tools that you will be using are created to be stateless.">
+
+
+<meta property="og:description" content="Stateless is used as a solution for everything nowadays: scale, containerize, make fault tolerant&hellip; But it is a reality that not everything can be stateless, even if you store the configurations inside the containers, you need to store static files somewhere, you need databases that are stateful by definition, and not all the tools that you will be using are created to be stateless.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HA Private Registry with S3 and NFS">
+<meta name="twitter:title" content="HA Private Registry with S3 and NFS">
+<meta property="og:url" content="https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/">
+<meta property="twitter:url" content="https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/">
+<meta property="og:site_name" content="CARLES BLOG">
+<meta property="og:description" content="Stateless is used as a solution for everything nowadays: scale, containerize, make fault tolerant&hellip; But it is a reality that not everything can be stateless, even if you store the configurations inside the containers, you need to store static files somewhere, you need databases that are stateful by definition, and not all the tools that you will be using are created to be stateless.">
+<meta name="twitter:description" content="Stateless is used as a solution for everything nowadays: scale, containerize, make fault tolerant&hellip; But it is a reality that not everything can be stateless, even if you store the configurations inside the containers, you need to store static files somewhere, you need databases that are stateful by definition, and not all the tools that you will be using are created to be stateless.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2017-04-18T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2017-04-18T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="DevOps">
+    
+      <meta property="article:section" content="Docker">
+    
+      <meta property="article:section" content="Docker Swarm">
+    
+      <meta property="article:section" content="AWS">
+    
+  
+  
+    
+      <meta property="article:tag" content="Docker">
+    
+      <meta property="article:tag" content="Docker Swarm">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@carles6">
+
+
+  <meta name="twitter:creator" content="@carles6">
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+
+
+
+
+  <meta property="og:image" content="https://cc250080.github.io/img/aws-for-docker-long.png">
+  <meta property="twitter:image" content="https://cc250080.github.io/img/aws-for-docker-long.png">
+
+
+  <meta property="og:image" content="https://cc250080.github.io/img/docker-on-aws-square.png">
+  <meta property="twitter:image" content="https://cc250080.github.io/img/docker-on-aws-square.png">
+
+
+    <title>HA Private Registry with S3 and NFS</title>
+
+    <link rel="icon" href="https://cc250080.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://cc250080.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://cc250080.github.io/" aria-label="Go to homepage">CARLES BLOG</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://cc250080.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://cc250080.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Carles Cortes Costa</h4>
+        
+          <h5 class="sidebar-profile-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:carles@carles.cc" target="_blank" rel="noopener" title="eMail">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">eMail</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/cc250080" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('/img/aws-for-docker-long.png')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" id="top">
+          
+            <span class="post-header-cover-caption caption">Containers in the Clouds</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      HA Private Registry with S3 and NFS
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2017-04-18T00:00:00Z">
+        
+  April 18, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/devops">DevOps</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/docker">Docker</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/docker-swarm">Docker Swarm</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/aws">AWS</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>Stateless is used as a solution for everything nowadays: scale, containerize, make fault tolerant&hellip; But it is a reality that not everything can be stateless, even if you store the configurations inside the containers, you need to store static files somewhere, you need databases that are stateful by definition, and not all the tools that you will be using are created to be stateless.</p>
+<p>So at one point or another, it is necessary to also have solutions in place in order to run statefull applications. In this article I will descrive the 2 solutions that can fulfill this requirements, NFS/<a href="https://aws.amazon.com/efs/" title="AWS Elastic File System">EFS</a> and <a href="https://minio.io" title="Distributed Object Storage">Minio</a>/<a href="https://aws.amazon.com/s3" title="AWS Simple Storage Service">S3</a>, and use them to create a Docker Local Registry and a Jenkins running on a Swarm cluster.</p>
+<p>The tools I am choosing allow you to create cloud infrastructure, which is the right way to go, but not limiting where you can deploy it, the idea is to become cloud provider agnostic.</p>
+<h2 id="nfs-and-efs">NFS and EFS</h2>
+<p><a href="https://aws.amazon.com/efs/" title="AWS Elastic File System">EFS</a>  is a quite new storage solution on AWS, it uses standard NFSv4 protocol but adding automatic scalability and different options to fine tune IOPS and lantencies, another great feature is multiAZ configurations. On this example I will be using an NFS server installed locally in our office lab, either using traditional NFS servers or  <a href="https://aws.amazon.com/efs/" title="AWS Elastic File System">EFS</a> is transparent for docker swarm, is done the same way.</p>
+<p>Let&rsquo;s take a look at the example I used in my previous article, create a <strong>Swarm Service</strong> for jenkins:</p>
+<pre><code>	docker service create --name jenkins-fg -p 8082:8080 -p 50000:50000 -e JENKINS_OPTS=&quot;--prefix=/jenkins&quot; --mount &quot;type=bind,source=/mnt/swarm-nfs/jenkins-fg,target=/var/jenkins_home&quot; --reserve-memory 300m jenkins
+
+	v6oq1shzs51fw6q8d2bstkd2f
+</code></pre>
+<p>What&rsquo;s special in this command is the <code>--mount </code> option, against the more traditional <strong>docker volume</strong> <code>-v</code>. You can read the official Docker documentation on how to configure <a href="https://docs.docker.com/engine/swarm/services/#configure-mounts">mounts</a>.</p>
+<p>Obviously the same NFS mount should be configured in all the nodes of your Swarm, this will allow for the containers to start in any of the different nodes without any data or configuration lost.</p>
+<h2 id="minioio-and-s3">Minio.io and S3</h2>
+<p><a href="https://minio.io" title="Distributed Object Storage">Minio</a> is a distributed object storage server built for cloud applications and DevOps. It allow us to self host <a href="https://aws.amazon.com/s3" title="AWS Simple Storage Service">S3</a>, that we will be using when installing the local <strong>Docker Service Registry</strong>. In this way the private registry will be able to have persistent data for the Docker Images and if necessary we can even synchronize S3 buckets between on-premises infrastructure and the AWS cloud.</p>
+<h3 id="installing-minio">Installing Minio</h3>
+<p>To install <a href="https://minio.io" title="Distributed Object Storage">Minio</a> as a Swarm Service we can create a Docker Compose file, in this file we will be also using NFS as a mount.</p>
+<p>On the official Minio <a href="https://docs.minio.io/docs/deploy-minio-on-docker-swarm">documentation</a> to deploy on Docker Swarm, they create a distributed system with 4 containers. For the sake of simplicity I had created a different docker-compose file:</p>
+<pre><code>	version: '3'
+
+	services:
+	  minio1:
+	    image: minio/minio:RELEASE.2017-03-16T21-50-32Z
+	    volumes:
+	      - /mnt/swarm-nfs/minio:/export
+	    ports:
+	      - &quot;9001:9000&quot;
+	    environment:
+	      MINIO_ACCESS_KEY: accesskey-example
+	      MINIO_SECRET_KEY: key-example
+	    deploy:
+	      restart_policy:
+	        delay: 10s
+	        max_attempts: 10
+	        window: 60s
+    command: server /export
+</code></pre>
+<p>This docker compose file will map the port 9001 to the port 9000 inside the container, will use a folder on the NFS mount and map it to the folder /export inside the container and will execute the command <code>server /export</code> when the service boots, which starts the Minio application.</p>
+<p>To start a service from a docker compose file we need to use the <code>docker stack deploy</code> command:</p>
+<p><code>docker stack deploy --compose-file=docker-compose.yaml minio</code></p>
+<p>We can reach this application on the IP of any of the Swarm nodes on port 9001.</p>
+<p><img src="https://cc250080.github.io/img/minio-login.png" alt="Minio Login"></p>
+<p>Then we create an S3 bucket for our <strong>Private Docker Registry</strong>.</p>
+<p><img src="https://cc250080.github.io/img/minio-interface.png" alt="Minio Interface"></p>
+<h3 id="local-docker-registry-using-s3-and-nfs">Local Docker Registry using s3 and NFS</h3>
+<p>In case your organization can&rsquo;t or doesn&rsquo;t want to use the public docker hub to store it&rsquo;s containers, you should use a Private Docker Registry.</p>
+<p>Tho allow the <strong>Local Docker Registry</strong> to Switch between nodes of the Swarm while having access to the stored Docker images and all the data the container needs to be recreated, we will be using both <strong>NFS</strong>(for the TLS certificates) and <strong>S3</strong>(to store the Docker images).</p>
+<p>I had created a docker-compose file that configures both solutions for us:</p>
+<pre><code>	version: '3'
+
+	services:
+	registry:
+	    image: registry:2
+	    volumes:
+	      - /mnt/swarm-nfs/registry/cert:/cert
+	    ports:
+	      - &quot;5000:5000&quot;
+	    environment:
+	      REGISTRY_STORAGE: s3
+	      REGISTRY_STORAGE_S3_ACCESSKEY: accesskey-example
+	      REGISTRY_STORAGE_S3_secretkey: key-example
+	      REGISTRY_STORAGE_S3_BUCKET: docker-registry
+	      REGISTRY_STORAGE_S3_REGIONENDPOINT: http://minio1:9001
+	      REGISTRY_STORAGE_S3_REGION: us-east-1
+	      REGISTRY_LOG_LEVEL: debug
+	      REGISTRY_HTTP_TLS_CERTIFICATE: /cert/domain.crt
+	      REGISTRY_HTTP_TLS_KEY: /cert/domain.key
+	    deploy:
+	      restart_policy:
+	        delay: 10s
+	        max_attempts: 10
+	        window: 60s
+</code></pre>
+<p>This example mounts a folder on the NFS to store the <strong>TLS</strong> certificates and uses the <strong>S3</strong> bucket we created with <strong>Minio</strong> to store the Docker images.</p>
+<p><code>#docker stack deploy --compose-file=docker-compose.yaml registry</code></p>
+<p>You can find more information about the registry and how to use it on the official <a href="https://docs.docker.com/registry/">documentation</a>.</p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/docker/">Docker</a>
+
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/docker-swarm/">Docker Swarm</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-1/" data-tooltip="AWS China, Big Data and IoT (PART 1)" aria-label="NEXT: AWS China, Big Data and IoT (PART 1)">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/04/debug-docker-swarm-services/" data-tooltip="Debug Docker Swarm Services" aria-label="PREVIOUS: Debug Docker Swarm Services">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/cc250080.github.io\/2017\/04\/ha-private-registry-with-s3-and-nfs\/';
+        
+          this.page.identifier = 'pileus';
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Carles Cortes Costa. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-1/" data-tooltip="AWS China, Big Data and IoT (PART 1)" aria-label="NEXT: AWS China, Big Data and IoT (PART 1)">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/04/debug-docker-swarm-services/" data-tooltip="Debug Docker Swarm Services" aria-label="PREVIOUS: Debug Docker Swarm Services">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcc250080.github.io%2F2017%2F04%2Fha-private-registry-with-s3-and-nfs%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcc250080.github.io%2F2017%2F04%2Fha-private-registry-with-s3-and-nfs%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcc250080.github.io%2F2017%2F04%2Fha-private-registry-with-s3-and-nfs%2F" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Carles Cortes Costa</h4>
+    
+      <div id="about-card-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Nerd
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://cc250080.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cc250080.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

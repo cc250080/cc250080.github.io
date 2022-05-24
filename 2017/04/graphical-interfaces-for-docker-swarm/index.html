@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Graphical Interfaces for Docker Swarm",
+  
+  "image": "//goto.docker.com/rs/929-FJL-178/images/docker-contributors.png",
+  
+  "datePublished": "2017-04-10T00:00:00Z",
+  "dateModified": "2017-04-10T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "Carles Cortes Costa",
+    
+    "image": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/cc250080.github.io\/2017\/04\/graphical-interfaces-for-docker-swarm\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CARLES BLOG",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    }
+    
+  },
+  "description": "In this article I will explore some different options for graphical interfaces to manage a Docker Swarm cluster and I will show how to install Portainer as a Swarm Service.\n",
+  "keywords": ["Docker, DevOps, Docker Swarm, GUI, Portainer, Shipyard, Rancher"]
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.99.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Carles Cortes Costa">
+<meta name="keywords" content="Docker, DevOps, Docker Swarm, GUI, Portainer, Shipyard, Rancher">
+<meta name="description" content="In this article I will explore some different options for graphical interfaces to manage a Docker Swarm cluster and I will show how to install Portainer as a Swarm Service.">
+
+
+<meta property="og:description" content="In this article I will explore some different options for graphical interfaces to manage a Docker Swarm cluster and I will show how to install Portainer as a Swarm Service.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Graphical Interfaces for Docker Swarm">
+<meta name="twitter:title" content="Graphical Interfaces for Docker Swarm">
+<meta property="og:url" content="https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/">
+<meta property="twitter:url" content="https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/">
+<meta property="og:site_name" content="CARLES BLOG">
+<meta property="og:description" content="In this article I will explore some different options for graphical interfaces to manage a Docker Swarm cluster and I will show how to install Portainer as a Swarm Service.">
+<meta name="twitter:description" content="In this article I will explore some different options for graphical interfaces to manage a Docker Swarm cluster and I will show how to install Portainer as a Swarm Service.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2017-04-10T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2017-04-10T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="DevOps">
+    
+      <meta property="article:section" content="Docker">
+    
+      <meta property="article:section" content="Docker Swarm">
+    
+      <meta property="article:section" content="GUI">
+    
+      <meta property="article:section" content="Portainer">
+    
+      <meta property="article:section" content="Shipyard">
+    
+      <meta property="article:section" content="Rancher">
+    
+  
+  
+    
+      <meta property="article:tag" content="Docker">
+    
+      <meta property="article:tag" content="Docker Swarm">
+    
+      <meta property="article:tag" content="Portainer">
+    
+      <meta property="article:tag" content="GUI">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@carles6">
+
+
+  <meta name="twitter:creator" content="@carles6">
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+
+
+
+
+  <meta property="og:image" content="//goto.docker.com/rs/929-FJL-178/images/docker-contributors.png">
+  <meta property="twitter:image" content="//goto.docker.com/rs/929-FJL-178/images/docker-contributors.png">
+
+
+  <meta property="og:image" content="//avatars3.githubusercontent.com/u/22225832?v=3&s=400">
+  <meta property="twitter:image" content="//avatars3.githubusercontent.com/u/22225832?v=3&s=400">
+
+
+    <title>Graphical Interfaces for Docker Swarm</title>
+
+    <link rel="icon" href="https://cc250080.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://cc250080.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://cc250080.github.io/" aria-label="Go to homepage">CARLES BLOG</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://cc250080.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://cc250080.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Carles Cortes Costa</h4>
+        
+          <h5 class="sidebar-profile-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:carles@carles.cc" target="_blank" rel="noopener" title="eMail">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">eMail</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/cc250080" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('//goto.docker.com/rs/929-FJL-178/images/docker-contributors.png')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" id="top">
+          
+            <span class="post-header-cover-caption caption">The beautiful Docker ecosystem</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Graphical Interfaces for Docker Swarm
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2017-04-10T00:00:00Z">
+        
+  April 10, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/devops">DevOps</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/docker">Docker</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/docker-swarm">Docker Swarm</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/gui">GUI</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/portainer">Portainer</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/shipyard">Shipyard</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/rancher">Rancher</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>In this article I will explore some different options for graphical interfaces to manage a Docker Swarm cluster and I will show how to install Portainer as a Swarm Service.</p>
+<h2 id="introduction">Introduction</h2>
+<p>The ecosystem of graphical interfaces for Docker is experiencing a fast grow and improvement lately, and I believe it will continue to do so for the next years.</p>
+<p>In my opinion the status of the Docker ecosystem requires still to work mostly using the CLI tools, they are mature and well documented, not so much yet the GUI tools available to manage a Swarm.</p>
+<p>In this article I will analyze some of them, specially <a href="http://portainer.io/">portainer</a>, <a href="https://shipyard.com">shipyard</a> and <a href="http://rancher.com/">rancher</a>. But there are a few others, some of them interesting enough to take a further look, like <a href="http://panamax.io">panamax</a> or <a href="https://cloud.docker.com/">Docker Cloud</a>. Other articles with an overview of this tools and more can be found in:</p>
+<p><a href="https://blog.ouseful.info/2015/08/10/seven-graphical-interfaces-to-docker/">seven-graphical-interfaces-to-docker</a></p>
+<p>[7 Web Interfaces for Container Management and Orchestration](7 Web Interfaces for Container Management and Orchestration)</p>
+<h2 id="portainer">Portainer</h2>
+<p><img src="http://demo.portainer.io/images/logo_alt.png" alt="portainer logo"></p>
+<p>Portainer is by far the easiest one to install, it does not require a separated container for the DB, the interface  is very fast and responsive, great to have an overview of what is happening on the Cluster.</p>
+<p>The product is sold as an easy way to manage Docker and Docker Swarm, but it actually has many downsides, first of all it is still not able to launch containers and apps as a Swarm Service. In general, it&rsquo;s Swarm integration is still far from what it Should be to be really useful.</p>
+<p>It also lacks local registry configuration and Active Directory integration, which are both very important features for our organization. There are news that they will be offering a separated module for AD integration end of the year, but it will be paid.</p>
+<p>In general, I really like it&rsquo;s simplicity, the interface, and I find it very useful to have a fast overview of the status of the Swarm, and also great are the possibilities to debug containers, allowing you to check the logs, access to the shell and check it&rsquo;s performance graphs.</p>
+<h2 id="shipyard">Shipyard</h2>
+<p><img src="https://www.safaribooksonline.com/library/view/docker-creating-structured/9781786465931/graphics/B04203_10_01.jpg" alt="Shipyard logo"></p>
+<p>Shipyard is built to be a great UI for docker Swarm, it has support for Swarm services, local registries and AD integration.</p>
+<p>The problem with Shipyard is it&rsquo;s installation, and not because is difficult, they offer 2 options to install, one based on a script, called automatic, and another one manual were you have to create 6 containers for the app, which is also not complicated. The problem I find with this approach is mostly the lack of a processs to install Shipyard as a Swarm Service. I find an application with a focus on being the management portal of your Swarm Cluster needs to have HA capabilities.</p>
+<p>I don&rsquo;t understand why they automatize the installation process with an script and not with a docker-compose file, I would also appreciate the possibility to change their db container (It uses RethinkDB) to some external database service, maybe MySQL, so you can achieve data persistence using services like AWS RDS or just an external database.</p>
+<p>This is a complain I have actually about all the Swarm/Kubernetes tools I had examined.</p>
+<p>In general Shipyard is already pretty feature rich, it&rsquo;s interface is clear and responsive and I like it&rsquo;s focus on providing support for Docker Swarm.</p>
+<h2 id="rancher">Rancher</h2>
+<p><img src="https://cdn.evbuc.com/eventlogos/90565841/rancherlogofinal.png" alt="Rancher logo"></p>
+<p>Rancher is a very powerful tool, well done, and the most enterprise grade of this 3 options. It has RBAC, AD integration and detailed audit logs. Also, it&rsquo;s existing catalog of applications and the way you can add new ones is the best one from this 3 options.</p>
+<p>It supports <strong>Docker Swarm</strong> (Recently Added), <strong>Kubernetes</strong> and Rancher&rsquo;s own orchestration called <strong>Cattle</strong>.</p>
+<p>Rancher recommendation is to install it outside the Swarm, in an independent host, I have to say this is an idea I don&rsquo;t like. I like to keep the architecture as simple as possible, specially when I think about tools like AWS CloudFormation, and I don&rsquo;t want to think much in how to add High Availability to a tool like this, it should come out-of-the-box, or even better, use the Swarm Cluster.</p>
+<p>It also does not offer instructions to be installed as a Swarm Service, and, Docker Swarm still appears as in testing/beta state in some parts of it&rsquo;s website and documentation.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I think the 3 tools are great, almost ready for me, but not yet. At this point I still think managing and configuring your local registries, compose files and in some cases the scripts with API calls is better done through <strong>CLI</strong> than trying to use web interfaces.</p>
+<p>For sure I will give this tools a new oportunity in the near future, because I am sure they will continue improving at a fast pace and is probable that in my organization we end using one of them to administer our Swarm, just, not yet.</p>
+<p>I don&rsquo;t understand why there is not a clear and fast way to configure persistent storage with an external database, is something I do often on some of the Docker Files I wrote, and for me it is a pretty elegant solucion to have a Service Running in the Swarm with High Availability.</p>
+<p>I am pretty sure many readers of this article will disagree with me, or maybe point me in the right direction. I welcome any different point of view in the comments.</p>
+<p>Nevertheless, I will install <strong>Portainer</strong> as a service in my Docker Swarm, while I will not use it for management tasks, it is still a great tool to get a graphical overview of the Cluster and also to debug problems with single containers.</p>
+<h2 id="installing-portainer-as-a-swarm-service">Installing Portainer as a Swarm Service</h2>
+<p>The official instructions to install <strong>Portainer</strong> have recently included a way to install it as a Swarm Service, while I like more this solution than to have it without HA, It is worth mentioning that since there&rsquo;s no way to point portainer to an external storage for configuration, every time the service switches from host to host, the admin credentials will have to be reconfigured, and all configurations, if any, done inside the Portainer interface will be lost.</p>
+<p>To install and start Portainer as a Swarm Service connect to a <strong>Manager Node</strong> and run the following command:</p>
+<p><code>docker service create     --name portainer     --publish 9000:9000     --constraint 'node.role == manager'     --mount type=bind,src=https://cc250080.github.io/var/run/docker.sock,dst=/var/run/docker.sock     portainer/portainer     -H unix:///var/run/docker.sock</code></p>
+<p>This will create a Service called <em>portainer</em>, publish is internal 9000 port to the outside, and limit the Nodes it can run to Manager Nodes, this is because only the Manager Nodes can give and overview of the state of the Swarm and do changes on it.</p>
+<p>After that we can already connect to it, by using the IP of any of the Nodes (Mesh Networking on Swarm) and the port 9000.
+<img src="https://cc250080.github.io/img/portainer.png" alt="Portainer Log-in"></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/docker/">Docker</a>
+
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/docker-swarm/">Docker Swarm</a>
+
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/portainer/">Portainer</a>
+
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/gui/">GUI</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/04/debug-docker-swarm-services/" data-tooltip="Debug Docker Swarm Services" aria-label="NEXT: Debug Docker Swarm Services">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/04/create-docker-swarm-on-centos/" data-tooltip="Create Docker Swarm on Centos" aria-label="PREVIOUS: Create Docker Swarm on Centos">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/cc250080.github.io\/2017\/04\/graphical-interfaces-for-docker-swarm\/';
+        
+          this.page.identifier = 'pileus';
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Carles Cortes Costa. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/04/debug-docker-swarm-services/" data-tooltip="Debug Docker Swarm Services" aria-label="NEXT: Debug Docker Swarm Services">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/04/create-docker-swarm-on-centos/" data-tooltip="Create Docker Swarm on Centos" aria-label="PREVIOUS: Create Docker Swarm on Centos">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcc250080.github.io%2F2017%2F04%2Fgraphical-interfaces-for-docker-swarm%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcc250080.github.io%2F2017%2F04%2Fgraphical-interfaces-for-docker-swarm%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcc250080.github.io%2F2017%2F04%2Fgraphical-interfaces-for-docker-swarm%2F" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Carles Cortes Costa</h4>
+    
+      <div id="about-card-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Nerd
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://cc250080.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cc250080.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

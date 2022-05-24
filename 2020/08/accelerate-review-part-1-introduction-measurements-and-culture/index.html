@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Accelerate Review Part 1: Introduction, Measurements and Culture",
+  
+  "datePublished": "2020-08-19T15:23:23+08:00",
+  "dateModified": "2020-08-19T15:23:23+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Carles Cortes Costa",
+    
+    "image": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/cc250080.github.io\/2020\/08\/accelerate-review-part-1-introduction-measurements-and-culture\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CARLES BLOG",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    }
+    
+  },
+  "description": "This is a summary of the book \u0026ldquo;ACCELERATE: Building and Scaling High Performing Technology Organizations\u0026rdquo;.\nPREFACE Starting in 2013 a research journey started trying to do something that was not done before, measure the capabilities and practices that, with a focus on software delivery, separate the high performing companies from those that are not, and, using rigorous methods of analysis that until then were reserved only to academia, help the industry to understand and identify the capabilities that actually drive performance in a statistically meaningful way and obtain results that can be seen in their profitability, productivity and market share and also in those effects that measure noncommercial outcomes like effectiveness, eficiency and customer satisfaction.",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.99.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Carles Cortes Costa">
+<meta name="keywords" content="">
+<meta name="description" content="This is a summary of the book &ldquo;ACCELERATE: Building and Scaling High Performing Technology Organizations&rdquo;.
+PREFACE Starting in 2013 a research journey started trying to do something that was not done before, measure the capabilities and practices that, with a focus on software delivery, separate the high performing companies from those that are not, and, using rigorous methods of analysis that until then were reserved only to academia, help the industry to understand and identify the capabilities that actually drive performance in a statistically meaningful way and obtain results that can be seen in their profitability, productivity and market share and also in those effects that measure noncommercial outcomes like effectiveness, eficiency and customer satisfaction.">
+
+
+<meta property="og:description" content="This is a summary of the book &ldquo;ACCELERATE: Building and Scaling High Performing Technology Organizations&rdquo;.
+PREFACE Starting in 2013 a research journey started trying to do something that was not done before, measure the capabilities and practices that, with a focus on software delivery, separate the high performing companies from those that are not, and, using rigorous methods of analysis that until then were reserved only to academia, help the industry to understand and identify the capabilities that actually drive performance in a statistically meaningful way and obtain results that can be seen in their profitability, productivity and market share and also in those effects that measure noncommercial outcomes like effectiveness, eficiency and customer satisfaction.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Accelerate Review Part 1: Introduction, Measurements and Culture">
+<meta name="twitter:title" content="Accelerate Review Part 1: Introduction, Measurements and Culture">
+<meta property="og:url" content="https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/">
+<meta property="twitter:url" content="https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/">
+<meta property="og:site_name" content="CARLES BLOG">
+<meta property="og:description" content="This is a summary of the book &ldquo;ACCELERATE: Building and Scaling High Performing Technology Organizations&rdquo;.
+PREFACE Starting in 2013 a research journey started trying to do something that was not done before, measure the capabilities and practices that, with a focus on software delivery, separate the high performing companies from those that are not, and, using rigorous methods of analysis that until then were reserved only to academia, help the industry to understand and identify the capabilities that actually drive performance in a statistically meaningful way and obtain results that can be seen in their profitability, productivity and market share and also in those effects that measure noncommercial outcomes like effectiveness, eficiency and customer satisfaction.">
+<meta name="twitter:description" content="This is a summary of the book &ldquo;ACCELERATE: Building and Scaling High Performing Technology Organizations&rdquo;.
+PREFACE Starting in 2013 a research journey started trying to do something that was not done before, measure the capabilities and practices that, with a focus on software delivery, separate the high performing companies from those that are not, and, using rigorous methods of analysis that until then were reserved only to academia, help the industry to understand and identify the capabilities that actually drive performance in a statistically meaningful way and obtain results that can be seen in their profitability, productivity and market share and also in those effects that measure noncommercial outcomes like effectiveness, eficiency and customer satisfaction.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2020-08-19T15:23:23">
+  
+  
+    <meta property="article:modified_time" content="2020-08-19T15:23:23">
+  
+  
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@carles6">
+
+
+  <meta name="twitter:creator" content="@carles6">
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+
+
+
+
+
+
+    <title>Accelerate Review Part 1: Introduction, Measurements and Culture</title>
+
+    <link rel="icon" href="https://cc250080.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://cc250080.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://cc250080.github.io/" aria-label="Go to homepage">CARLES BLOG</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://cc250080.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://cc250080.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Carles Cortes Costa</h4>
+        
+          <h5 class="sidebar-profile-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:carles@carles.cc" target="_blank" rel="noopener" title="eMail">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">eMail</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/cc250080" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Accelerate Review Part 1: Introduction, Measurements and Culture
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2020-08-19T15:23:23&#43;08:00">
+        
+  August 19, 2020
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>This is a summary of the book <em>&ldquo;ACCELERATE: Building and Scaling High Performing Technology Organizations&rdquo;</em>.</p>
+<p><img src="https://cc250080.github.io/img/acceleratebook.jpg" alt="Accelerate Book"></p>
+<h1 id="preface">PREFACE</h1>
+<p>Starting in 2013 a research journey started trying to do something that was not done before, measure the capabilities and practices that, with a focus on software delivery, separate the high performing companies from those that are not, and, using rigorous methods of analysis that until then were reserved only to academia, help the industry to understand and identify the capabilities that actually drive performance in a statistically meaningful way and obtain results that can be seen in their profitability, productivity and market share and also in those effects that measure noncommercial outcomes like effectiveness, eficiency and customer satisfaction.</p>
+<p>This book is divided in 3 parts:</p>
+<ul>
+<li>Part One: What we found</li>
+<li>Part Two: The research</li>
+<li>Part three: Transformation</li>
+</ul>
+<p>My articles will only focus on the Part One of the book, which presents the findings of the research, Part Two discusses the science and research behind the results, and Part Three describes some case studies of what is possible when organizations adopt and implement the described capabilities in order to drive performance.</p>
+<h1 id="part-one-what-we-found">PART ONE: What we found</h1>
+<h2 id="chapter-1-accelerate">Chapter 1: ACCELERATE</h2>
+<p>&ldquo;Business as usual&rdquo; is no longer enough to remain competitive. To excel in the market organization must <strong>accelerate</strong>:</p>
+<ul>
+<li>Delivery of goods and services to delight their customers</li>
+<li>Understand the market to detect and predict customer demand</li>
+<li>Anticipation of compliance and regulatory changes</li>
+<li>Response to risks such as security threats or changes in the economy</li>
+</ul>
+<p><strong>At the heart of this acceleration is Software</strong>. Software and technology are key differentiators for organizations to deliver value to customers and stakeholders. <em>The strategic use of technology explains revenue and productivity gains more than merges and acquisitions (M&amp;A) and entrepreneurship (2017) (James Bessen - Boston University), Link between technology and profitability (Eric Brynjolfsoon 2008)</em>.</p>
+<p>Another Forrester report states that DevOps is accelerating technology, but that organizations often overestimate their progress (Klavens et al. 2017). Furhtermore, the report points out that executives are especially prone to overestimating their progress when compared to those who are actually doing the work.</p>
+<p>The disconnect between executive and practitioner highlights two considerations; First, <strong>estimates of DevOps maturity or capabilities from practitioners are more accurate</strong>. Second, it makes clear the <strong>need to measure DevOps capabilities accurately</strong> and to communicate these measurment results to leaders.</p>
+<p>So in order to know where you are, what you need to do to have a clear picture?</p>
+<h3 id="focus-on-capabilities-not-maturity">FOCUS ON CAPABILITIES, NOT MATURITY</h3>
+<p>According to the authors maturity models are not the appropiate tool to use or mindset to have. Instead, shifting to a capabilities model of measurement is essential for organizations wanting to accelerate software delivery. This is due to four factors:</p>
+<ol>
+<li>Maturity models focus on helping an organization &ldquo;arrive&rdquo; to a mature state and then declare themselves done, whereas technology transformation should follow a continuous improvement paradigm.</li>
+<li>Linear advancement doesn&rsquo;t allows different parts of the organization to take a customized approach. Teams have their own context, their own constraints, their own goals and what we should focus next depends on those things.</li>
+<li>Capability models are outcome based, on the other hand, maturity models in most cases only measure technical proficiency or tooling. These end up being vanity metrics: while they can be relatively easy to measure, they don&rsquo;t tell us anything about the impact they have on business.</li>
+<li>The industry is changing: What is good enough and even &ldquo;high-performing&rdquo; today is no longer good enough next year. Capability models allow for dynamically changing environments to focus in developing the skills needed to remain competitive.</li>
+</ol>
+<p>So, according to the book, maturity models are not the right tool to properly focus on measure how capable we are at helping our business.</p>
+<h4 id="evidence-based-transformations-focus-on-key-capabilities">EVIDENCE-BASED TRANSFORMATIONS FOCUS ON KEY CAPABILITIES</h4>
+<p>Which capabilities to focus on? The research in this book has yielded insights in what enables both software delivery performance and organizational performance as seen in profitability, productivity and market share. In fact, the research shows that <strong>none of the following often cited factors predicted performance</strong>:</p>
+<ul>
+<li>Age and technology used for the application</li>
+<li>Wheter operations teams or development teams performed deployments</li>
+<li>Wheter a change approbal board (CAB) is implemented</li>
+</ul>
+<p>This was quite an eye opener !</p>
+<p>This research has identified key capabilities. These capabilities are easy to define, measure, and improve. This book aims to get you started in defining and measuring those capabilities.</p>
+<p>How do high-performing organizations teams achieve such amazing performance? <strong>By improving the right capabilities</strong></p>
+<h2 id="chapter-2-measuring-performance">Chapter 2: MEASURING PERFORMANCE</h2>
+<p>In this book the authors wanted to discover what works and what doesn&rsquo;t in a scientific way. Measuring performance in the domain of software is hard, so the first step to know what are the capabilities that help business must be to define a valid, reliable measure of software delivery performance, and then, the capabilities that allow to reach high outcomes.</p>
+<h4 id="flaws-in-the-previous-attempts-to-measure-performance">FLAWS IN THE PREVIOUS ATTEMPTS TO MEASURE PERFORMANCE</h4>
+<p>Previous attempts to measure performance were focused on individual or local measures rather than team or global ones and all failed for very obvious reasons: lines of code, velocity, and utilization all resulted in poor measurements of how IT work has any kind of business impact. * find the details in the second chapter of the book *</p>
+<h4 id="measuring-software-delivery-performance">MEASURING SOFTWARE DELIVERY PERFORMANCE</h4>
+<p>A succesful measure of performance should focus on a global outcome to ensure teams aren&rsquo;t pitted against each other (tipical example is developers against operations). Also, the measure should focus on outcome not output: it shouldn&rsquo;t reward people for putting large amounts of busywork that doesn&rsquo;t actually help achieve organization goals.</p>
+<p>In our search for measures of delivery performance that meet these criteria, we settled on four: <strong>delivery lead time, deployment frequency, time to restore service, and change fail rate.</strong></p>
+<p><img src="https://cc250080.github.io/img/softwaredelivery21.png" alt="Sofware Delivery Performance"></p>
+<p>Use <strong>lead time</strong> as a metric is a key element of Lean theory. Lead time is the time it takes to go from customer making a request to the request being satisfied.</p>
+<p>The second metric to consider is <strong>batch size</strong>. Reducing batch size is another central element of the Lean paradigm. Indeed, it was one of the keys to the success of the Toyota production system. Reducing batch sizes reduces cycle times and variability in flow, accelerates feedback, reduces risk and overhead, improves efficiency, increases motivation and urgency, and reduces costs and schedule growth (<em>Reinertsen 2009, Chapter 9</em>). However, in software, batch size is hard to measure and communicate across contexts as there is no visible inventory. Therefore, the authors settled on deployment frequency as a proxy for batch size since it is easy to measure and typically has low variability.</p>
+<p><strong>Delivery lead times</strong> and <strong>deployment frequency</strong> are both measures of software delivery performance <em>&ldquo;tempo&rdquo;</em>. However, the authors wanted to investigate if this increase in speed delivery also affects the stability of the systems. Traditionally, reliability is measured as time between failures, but the fact is that in modern software products and services, which are rapidly changing complex systems, failure is inevitable (complex systems tend to unpredictability). So the key question becomes: <strong>How quickly can a service be restored?</strong></p>
+<p>Finally, a key metric when making changes to systems is <strong>what percentage of changes to production fail</strong>. In the context of Lean, this is the same as percent complete and accurate for the product delivery process(what is the rate of product production failures), and is a key quality metric.</p>
+<p><img src="https://cc250080.github.io/img/tempo.png" alt="Trends: Tempo"></p>
+<p><img src="https://cc250080.github.io/img/stability.png" alt="Trends: Stability"></p>
+<p><strong>These results demonstrate that there is not tradeoff between improving performance(speed) and achieving higher levels of stability and quality(stability).</strong> This is precisely what the Agile and Lean movements predict, but much dogma in the industry still rests on the false assumption that moving faster means trading off against other performance goals (stability, costs, risks&hellip;) . This is a key message from the book, you can become faster and more stable at the same time.</p>
+<p>The authors have found the right measurements for software delivery performance, after this, the question they try to answer is: Does Software Delivery Performance Matters?</p>
+<h4 id="the-impact-of-delivery-performance-on-organizational-performance">THE IMPACT OF DELIVERY PERFORMANCE ON ORGANIZATIONAL PERFORMANCE</h4>
+<p>Survey respondents were asked to rate their organization&rsquo;s relative performance across several dimensions: profitability, market share and productivity.</p>
+<p>This measure of organizational performance has also been found to be highly correlated to measures of ROI, and it is robust to economic cycles. Analysis over several years shows that high-performing organizations were consistently <strong>twice as likely</strong> to exceed these goals as low performers. This demonstrates that your organization&rsquo;s software delivery capability does in fact provide a competitive advantage to your business.</p>
+<p>The authors also found that high-performers were better at non-comercial goals (quantity of goods and services, operating efficiency, customer satisfaction&hellip;).</p>
+<p><img src="https://cc250080.github.io/img/noncomercial.png" alt="Influence of Software Delivery"></p>
+<h4 id="driving-change">DRIVING CHANGE</h4>
+<p>Until now the authors have defined software delivery performance in a way that is rigorous and measurable, based on this it should be possible to make evidence-based decisions on how to improve the performance, also now teams can be compared against other teams or other organizations, their improvement can be measured and probably most exciting of all, authors are able in their studies to go beyond correlation and start testing predictions and hypotheses.</p>
+<p>Now we can use tools like the table 2.8 to know where we are, but it is essential to use such tools carefully. In organizations with a learning culture, they are powerful. But <strong>&ldquo;in pathological and bureaucratic organizational cultures, measurement is used as a form of control, and people hide information that challenges existing rules, strategies, and power structures&rdquo;</strong>. <strong>&lsquo;Whenever there is fear, you get the wrong numbers&rsquo;</strong>.</p>
+<p>Before an organization is ready to use a scientific approach to improve performance, we must first understand and develop the right culture. This is the topic the authors turns to then:</p>
+<h2 id="chapter-3-measuring-and-changing-culture">Chapter 3: MEASURING AND CHANGING CULTURE</h2>
+<p>In this chapter the authors explain how organization culture can be divided in 3 levels: assumptions, values and artifacts (<em>Schein 1985</em>). And how they focus on the second level, values, to drive their measurements and the actions for change. The model they use to measure organization culture is the <strong>Westrum Model</strong> (<em>Ron Westrum 1988</em>). Westrum has been researching human factors in system safety, particularly in the context of accidents in domains that were highly complex and risky, such as aviation and healthcare. He developed the following typology of organizational cultures:</p>
+<ul>
+<li><strong>Pathological</strong> (power oriented) Characterized by large amounts of fear and threat. People often hoard information or withhold it for political reasons, or distort it to make themselves look better.</li>
+<li><strong>Bureaucratic</strong> (rule-oriented) This organizations protect departments. Departments want to maintain their walls, insist on their own rules, and generally do things by the book- <em>their book</em>.</li>
+<li><strong>Generative</strong> (performance-oriented) Focus on the mission. Everything is subordinated to good performance, to doing what we are supposed to do.</li>
+</ul>
+<p>This model predicts information flows, and there is also a clasification of good information flows:</p>
+<ol>
+<li>It provides the answers that are needed</li>
+<li>It is timely</li>
+<li>Is presented in a way that can be effectively used</li>
+</ol>
+<p>According to the authors, this model not only predicts information flow, it is also directly linked with performance and safety outcomes.</p>
+<p><img src="https://cc250080.github.io/img/westrummodel.png" alt="The Westrum Model"></p>
+<h4 id="measuring-culture">MEASURING CULTURE</h4>
+<p>In this section there are a few concepts about statistics, polls and the scientific method that conclude that the best possible way is to ask Likert-type questions, from &ldquo;Strongly Disagree&rdquo; to &ldquo;Strongly Agree&rdquo; in numbers that allow for statistically useful conclusions. The questions they used are the following:</p>
+<p><img src="https://cc250080.github.io/img/likert-culture.png" alt="Likert-type for measuring culture"></p>
+<p>In 2016, 31% of respondents were classified as pathological, 48% as bureaucratic and 21% as generative. The authors believe their research has consistently found a construct that is both valid and reliable.</p>
+<p>The authors also make the comment that bureaucratic cultures are not necessarily bad, since rules are put in place to ensure fairness of treatment in every case. The problems arise when following rules becomes more important than achieve goals.</p>
+<h4 id="what-does-westrum-organizational-culture-predict">WHAT DOES WESTRUM ORGANIZATIONAL CULTURE PREDICT?</h4>
+<ol>
+<li>Good culture (generative) requires trust and cooperation between people across the organization, so <strong>it reflects the level of collaboration and trust inside the organization</strong></li>
+<li>If in a team there is better information available and decisions are easier to be corrected because it is not closed and hierarchical, authors assume that <strong>it can predict better decision making</strong></li>
+<li>Problems are more rapidly discovered and addressed, so <strong>this teams do a better job with people</strong></li>
+</ol>
+<p><img src="https://cc250080.github.io/img/westrumoutcomes.png" alt="Westrum Outcomes"></p>
+<h4 id="consequences-of-westrums-theory-for-technology-organizations">CONSEQUENCES OF WESTRUM&rsquo;S THEORY FOR TECHNOLOGY ORGANIZATIONS</h4>
+<p>The westrum model was initially developed to predict safety outcomes, the research from the authors shows it also predicts both softwade delivery and organizational performance. This makes sense from different points of view, on one side safety outcomes are performance outcomes in a healthcare setting, and on the other side, only safe environments allow for change to happen fast and safely since those are context which can handle change with a low level of risk, which means, culture is also a predictor for innovation, only on those organizations where is safe to realize and try changes innovation will happen. This conclusion is aligned by some research done by Google in the this field.</p>
+<p>Google wanted to discover if there were any common factors among its best-performing and most innovative teams. Then started a two-year research project to investigate what made Google teams effective, conducting hundreds of interviews on hundreds of teams. They expected to find a combination of individual traits and skills that would be key ingredients for high-performing teams. What they found instead was that &ldquo;<em>who is on a team matters less than how the team members interact, structure their work, and view their contributions</em>&rdquo; (Google 2015). In other words, <strong>it all comes down to team dynamics.</strong></p>
+<h4 id="how-do-we-change-culture">HOW DO WE CHANGE CULTURE?</h4>
+<p>John Shook, describing his experiences transforming the culture of the teams at the car manufacturing plant that was the genesis of the Lean manufacturing movement in the US wrote &ldquo;<em>what my . . . experience taught me that was so powerful was that the way to change culture is not to first change how people think, but instead to start by changing how people behave&ndash;what they do&rdquo; (Shook 2010)</em>&quot;</p>
+<p>The authors hypothesize that, following the theory developed by the Lean and Agile movements, implementing the practices of these movements can have an effect on culture. Then they set out to look at both technical and management practices, and to measure their impact on culture. Their research concludes that <em>Lean Management</em>, along with a set of other technical practices known collectively as <em>Continuous Delivery</em> <em>(Humble and Farley 2010)</em>, do in fact impact culture.</p>
+<p><img src="https://cc250080.github.io/img/culturedrivers.png" alt="Westrum Organizational Culture&amp;rsquo;s Drivers"></p>
+<p>Authors conclude that every organization can act their way towards a better culture by implementing those practices. In the next chapters the authors will go first towards the technical practices that make a difference to improve the culture, and then the management practices.</p>
+<h4 id="resume">RESUME</h4>
+<p>The authors start by trying to find out measures that can be used to quantify software delivery performance, then, investigate if there is a relation between this measurements and the business performance of the organization, which they found (high performers are twice as likely to perform better in the market). In order to quantify your performance, you need a culture that allows for the necessary openness, and not surprisngly this kind of culture can also be directly related with high performers. So, it makes sense that the first thing to do is to try to change the culture of the organization. But in order to do this, the most effective method is not to change people&rsquo;s mindsets, but to redefine people&rsquo;s work. The author&rsquo;s will explore in the next chapters <strong>Lean Management</strong> and <strong>Continuous Delivery</strong> as those practices that help redefine people&rsquo;s work, organization culture and finally the software delivery practices that helps businesses to succeed and will do so backed up with their research on impact.</p>
+<p>I will resume those chapters in the <strong>PART 2</strong> of this article.</p>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2020/08/basic-introduction-to-jira/" data-tooltip="Basic Introduction to Jira" aria-label="PREVIOUS: Basic Introduction to Jira">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/cc250080.github.io\/2020\/08\/accelerate-review-part-1-introduction-measurements-and-culture\/';
+        
+          this.page.identifier = '\/2020\/08\/accelerate-review-part-1-introduction-measurements-and-culture\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Carles Cortes Costa. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2020/08/basic-introduction-to-jira/" data-tooltip="Basic Introduction to Jira" aria-label="PREVIOUS: Basic Introduction to Jira">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcc250080.github.io%2F2020%2F08%2Faccelerate-review-part-1-introduction-measurements-and-culture%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcc250080.github.io%2F2020%2F08%2Faccelerate-review-part-1-introduction-measurements-and-culture%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcc250080.github.io%2F2020%2F08%2Faccelerate-review-part-1-introduction-measurements-and-culture%2F" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Carles Cortes Costa</h4>
+    
+      <div id="about-card-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Nerd
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://cc250080.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cc250080.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

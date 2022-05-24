@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Basic Introduction to Jira",
+  
+  "datePublished": "2020-08-17T00:00:00Z",
+  "dateModified": "2020-08-17T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "Carles Cortes Costa",
+    
+    "image": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/cc250080.github.io\/2020\/08\/basic-introduction-to-jira\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CARLES BLOG",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    }
+    
+  },
+  "description": "This article is going to be much less technical than the ones I use to write, the goal is to simply provide a basic introduction to Jira and some of it\u0026rsquo;s main capacities. Hopefully in the near future this article will work as the introduction on a Jira manual that my team and myself are writting for my current employeer, I thought before all that manual is finished it might be useful to share this here.",
+  "keywords": ["Jira"]
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.99.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Carles Cortes Costa">
+<meta name="keywords" content="Jira">
+<meta name="description" content="This article is going to be much less technical than the ones I use to write, the goal is to simply provide a basic introduction to Jira and some of it&rsquo;s main capacities. Hopefully in the near future this article will work as the introduction on a Jira manual that my team and myself are writting for my current employeer, I thought before all that manual is finished it might be useful to share this here.">
+
+
+<meta property="og:description" content="This article is going to be much less technical than the ones I use to write, the goal is to simply provide a basic introduction to Jira and some of it&rsquo;s main capacities. Hopefully in the near future this article will work as the introduction on a Jira manual that my team and myself are writting for my current employeer, I thought before all that manual is finished it might be useful to share this here.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Introduction to Jira">
+<meta name="twitter:title" content="Basic Introduction to Jira">
+<meta property="og:url" content="https://cc250080.github.io/2020/08/basic-introduction-to-jira/">
+<meta property="twitter:url" content="https://cc250080.github.io/2020/08/basic-introduction-to-jira/">
+<meta property="og:site_name" content="CARLES BLOG">
+<meta property="og:description" content="This article is going to be much less technical than the ones I use to write, the goal is to simply provide a basic introduction to Jira and some of it&rsquo;s main capacities. Hopefully in the near future this article will work as the introduction on a Jira manual that my team and myself are writting for my current employeer, I thought before all that manual is finished it might be useful to share this here.">
+<meta name="twitter:description" content="This article is going to be much less technical than the ones I use to write, the goal is to simply provide a basic introduction to Jira and some of it&rsquo;s main capacities. Hopefully in the near future this article will work as the introduction on a Jira manual that my team and myself are writting for my current employeer, I thought before all that manual is finished it might be useful to share this here.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2020-08-17T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-08-17T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Jira">
+    
+  
+  
+    
+      <meta property="article:tag" content="Jira">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@carles6">
+
+
+  <meta name="twitter:creator" content="@carles6">
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+
+
+
+
+
+
+    <title>Basic Introduction to Jira</title>
+
+    <link rel="icon" href="https://cc250080.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://cc250080.github.io/2020/08/basic-introduction-to-jira/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://cc250080.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://cc250080.github.io/" aria-label="Go to homepage">CARLES BLOG</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://cc250080.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://cc250080.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Carles Cortes Costa</h4>
+        
+          <h5 class="sidebar-profile-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:carles@carles.cc" target="_blank" rel="noopener" title="eMail">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">eMail</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/cc250080" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Basic Introduction to Jira
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2020-08-17T00:00:00Z">
+        
+  August 17, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/jira">Jira</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>This article is going to be much less technical than the ones I use to write, the goal is to simply provide a basic introduction to Jira and some of it&rsquo;s main capacities. Hopefully in the near future this article will work as the introduction on a Jira manual that my team and myself are writting for my current employeer, I thought before all that manual is finished it might be useful to share this here.</p>
+<h1 id="what-exactly-is-jira">What exactly is Jira?</h1>
+<p>Jira is designed to help teams of all types manage work. Originally, Jira was a bug and issue tracker. But today, Jira has evolved into a powerful work management tool for all kinds of use cases, from requirements and test case management to agile software development.</p>
+<p><img src="https://cc250080.github.io/img/jira-dashboards.png" alt="Jira Dashboard"></p>
+<p>Jira can be configured to fit any type of project. Teams can start with a project template or create their own custom workflow. Jira issues, also known as tasks, tracks each piece of work that needs to pass through the workflow steps to completion. Customizable permissions enable admins to determine who can see and perform which actions. With all project information in place, reports can be generated to track progress, productivity, and ensure nothing slips.</p>
+<p>Currently the capacity of Jira to adapt, expand and perform tasks that it was not designed to do in the begining is starting to be mindblowing, throught the use of Plugins or simply coding a bit on top of it.</p>
+<p>In general, I am an open-source advocate, and I had followed for years some alternatives to Jira like <em>Taiga</em>. But, I have to admit, until now I haven&rsquo;t found any open-source solution able to substitute Jira succesfully in the enterprise context I am realizing my work (surely it is possible, but through how much effort?).</p>
+<h1 id="what-is-a-jira-project">What is a Jira Project?</h1>
+<p>A jira project is a collection that holds Jira <em>issues</em>. Each issue in a project will share it&rsquo;s project Key and a Number for the issue itself.</p>
+<p><img src="https://cc250080.github.io/img/jira1-project.png" alt="Jira Projects Key"></p>
+<p>Beyond this simple definition, Jira projects stand alone from each other in different ways:</p>
+<ol>
+<li>JIRA project issues will share common potential configurations. Whether they are workflows, fields, screens, etc., available configurations will be defined on a project-by-project basis based off of issue type.</li>
+<li>Projects will have their own permissions system, i.e. which groups of users can access the project, which issues they can see, etc.</li>
+<li>Projects will have their own versioning or release index, i.e. LEGO Castle v. 1, v. 2, etc., as well as components.</li>
+</ol>
+<h2 id="so-what-are-the-strategies-to-organize-jira-projects">So what are the Strategies to organize Jira Projects?</h2>
+<p>There&rsquo;s no wrong or right for this, but as a guideline there are some possible strategies:</p>
+<ol>
+<li><em>Releasable product</em> - If you are a software development team or a product oriented team, you might want to organize your projects by releseable product or groups of work that share a common release cycle.</li>
+<li><em>Team</em> - Team based projects are another common organization model. This allows your work to mirror your organization and is convenient in less cross-functional setups, as it allows for more straight forward project permission management.</li>
+<li><em>Business Unit</em> - You can also consider to organize around larger business units.</li>
+</ol>
+<h3 id="other-considerations">Other Considerations</h3>
+<p>What else can help in your decision making?</p>
+<ol>
+<li><em>Components</em> - You can still sub-categorize issues within a given project using components, this allows to organize the tasks around your project in different tasks and sub-tasks.</li>
+<li><em>Independence</em> - Think when work can be disparate enough to justify different projects. Requirements over time could develop to be entirely independent and justify separate projects rather than a shared one.</li>
+<li><em>Boards</em> - A lot of users assume that boards need to correspond to projects 1:1. This isn&rsquo;t the case! Since boards are filter-based, they can map to multiple projects. Don&rsquo;t let a boards restrict how you schematize your projects.</li>
+</ol>
+<h1 id="what-is-a-jira-workflow">What is a Jira Workflow</h1>
+<p>Every team has their own definition of <strong>&lsquo;Done&rsquo;</strong> and how to get there. A Jira workflow is represented on a digital board and displays the statuses and transitions of every item of work.</p>
+<p><img src="https://cc250080.github.io/img/workflow.svg" alt="Jira workflow"></p>
+<p>People has tendency to associate Jira to Software Development practices, but actually Jira is a generic Project Management and task management tool that can be used for any workflow. Let&rsquo;s take some examples from the Jira website:</p>
+<p><img src="https://cc250080.github.io/img/workflow-example.png" alt="Jira workflow-example"></p>
+<p>If you think in the tasks that you do in your daily work, probably you are able to reduce most of it (hopefully not all) to an ordered list of actions and conditionals, Jira can adapt to any such kind of workflow.</p>
+<p><img src="https://cc250080.github.io/img/workflow-kinds.png" alt="Jira workflow-kinds"></p>
+<h2 id="methodologies-to-guide-your-workflow">Methodologies to guide your workflow</h2>
+<h3 id="scrum">Scrum</h3>
+<p>Perhaps the most famous of the Agile methodologies, Scrum encourages team collaboration by focusing on a single goal at a time and delivering incrementally.</p>
+<p>A standard Scrum process begins with the creation of a product backlog, which in simple terms, is really the team&rsquo;s to-do list. Each team member plans how much of the backlog he or she can complete in a given timeframe (the &ldquo;Sprint,&rdquo; typically two weeks). The Sprint begins and team builds the product. At the end of each Sprint, the team determines what work to tackle next based on the outcome of the previous Sprint. And the process repeats.</p>
+<h3 id="kanban">Kanban</h3>
+<p>Unlike Scrum, Kanban focuses on status rather than due dates. Each item of work progresses through pre-defined project stages so teams can easily see what work is in-progress and identify roadblocks.</p>
+<p>A basic kanban board is a three-step workflow: To Do, In Progress, and Done. But depending on the unique requirements and composition of your team, additional workflow stages can be mapped in.</p>
+<h3 id="jira-epics-and-stories">Jira Epics and Stories</h3>
+<p>While not a methodology per se, epics and stories are Agile artifacts to classify amount of work. An epic captures a large body of work that can be broken down into a number of smaller tasks.</p>
+<p>Those smaller tasks, called user stories, are an effective way to write product backlog items. When utilized, they are often written from the point of view of an end users.</p>
+<h2 id="or-just-create-your-own-">Or Just Create your OWN !</h2>
+<p>In reality many teams discover that just adhering to Scrum or Kanban doesn&rsquo;t fits their team, Jira Workflows give you the possibility to slowly adjust and find that flow that better promotes output.</p>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/jira/">Jira</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" data-tooltip="Accelerate Review Part 1: Introduction, Measurements and Culture" aria-label="NEXT: Accelerate Review Part 1: Introduction, Measurements and Culture">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/" data-tooltip="AWS China, Big Data and IoT (PART 3)" aria-label="PREVIOUS: AWS China, Big Data and IoT (PART 3)">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2020/08/basic-introduction-to-jira/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2020/08/basic-introduction-to-jira/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2020/08/basic-introduction-to-jira/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/cc250080.github.io\/2020\/08\/basic-introduction-to-jira\/';
+        
+          this.page.identifier = 'pileus';
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Carles Cortes Costa. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" data-tooltip="Accelerate Review Part 1: Introduction, Measurements and Culture" aria-label="NEXT: Accelerate Review Part 1: Introduction, Measurements and Culture">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/" data-tooltip="AWS China, Big Data and IoT (PART 3)" aria-label="PREVIOUS: AWS China, Big Data and IoT (PART 3)">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2020/08/basic-introduction-to-jira/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2020/08/basic-introduction-to-jira/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2020/08/basic-introduction-to-jira/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcc250080.github.io%2F2020%2F08%2Fbasic-introduction-to-jira%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcc250080.github.io%2F2020%2F08%2Fbasic-introduction-to-jira%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcc250080.github.io%2F2020%2F08%2Fbasic-introduction-to-jira%2F" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Carles Cortes Costa</h4>
+    
+      <div id="about-card-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Nerd
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://cc250080.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cc250080.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

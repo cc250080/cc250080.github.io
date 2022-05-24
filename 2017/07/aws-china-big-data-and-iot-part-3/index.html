@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AWS China, Big Data and IoT (PART 3)",
+  
+  "image": "https://cc250080.github.io/img/aws-iot-banner.png",
+  
+  "datePublished": "2017-07-25T00:00:00Z",
+  "dateModified": "2017-07-25T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "Carles Cortes Costa",
+    
+    "image": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/cc250080.github.io\/2017\/07\/aws-china-big-data-and-iot-part-3\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CARLES BLOG",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    }
+    
+  },
+  "description": "For the third part of this series of articles, we will create a small Redshift instance, and we will learn how to synchronize data between S3 and Redshift.\nThe first step will be to use AWS Identity and Access Management IaM to create a role for Redshift to access S3.\nOn the second step we will create a sample Redshift cluster, and finally, we will use a special SQL COPY command to ingest the JSON data from S3 into Redshift.\n",
+  "keywords": ["AWS, China, IoT, Big Data, RedShift, S3, Machine Learning, ML, Glacier, Cloud"]
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.99.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Carles Cortes Costa">
+<meta name="keywords" content="AWS, China, IoT, Big Data, RedShift, S3, Machine Learning, ML, Glacier, Cloud">
+<meta name="description" content="For the third part of this series of articles, we will create a small Redshift instance, and we will learn how to synchronize data between S3 and Redshift.
+The first step will be to use AWS Identity and Access Management IaM to create a role for Redshift to access S3.
+On the second step we will create a sample Redshift cluster, and finally, we will use a special SQL COPY command to ingest the JSON data from S3 into Redshift.">
+
+
+<meta property="og:description" content="For the third part of this series of articles, we will create a small Redshift instance, and we will learn how to synchronize data between S3 and Redshift.
+The first step will be to use AWS Identity and Access Management IaM to create a role for Redshift to access S3.
+On the second step we will create a sample Redshift cluster, and finally, we will use a special SQL COPY command to ingest the JSON data from S3 into Redshift.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS China, Big Data and IoT (PART 3)">
+<meta name="twitter:title" content="AWS China, Big Data and IoT (PART 3)">
+<meta property="og:url" content="https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/">
+<meta property="twitter:url" content="https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/">
+<meta property="og:site_name" content="CARLES BLOG">
+<meta property="og:description" content="For the third part of this series of articles, we will create a small Redshift instance, and we will learn how to synchronize data between S3 and Redshift.
+The first step will be to use AWS Identity and Access Management IaM to create a role for Redshift to access S3.
+On the second step we will create a sample Redshift cluster, and finally, we will use a special SQL COPY command to ingest the JSON data from S3 into Redshift.">
+<meta name="twitter:description" content="For the third part of this series of articles, we will create a small Redshift instance, and we will learn how to synchronize data between S3 and Redshift.
+The first step will be to use AWS Identity and Access Management IaM to create a role for Redshift to access S3.
+On the second step we will create a sample Redshift cluster, and finally, we will use a special SQL COPY command to ingest the JSON data from S3 into Redshift.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2017-07-25T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2017-07-25T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Big Data">
+    
+      <meta property="article:section" content="IoT">
+    
+      <meta property="article:section" content="AWS">
+    
+  
+  
+    
+      <meta property="article:tag" content="AWS">
+    
+      <meta property="article:tag" content="IoT">
+    
+      <meta property="article:tag" content="Big Data">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@carles6">
+
+
+  <meta name="twitter:creator" content="@carles6">
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+
+
+
+
+  <meta property="og:image" content="https://cc250080.github.io/img/aws-iot-banner.png">
+  <meta property="twitter:image" content="https://cc250080.github.io/img/aws-iot-banner.png">
+
+
+  <meta property="og:image" content="https://cc250080.github.io/img/aws-iot-square.png">
+  <meta property="twitter:image" content="https://cc250080.github.io/img/aws-iot-square.png">
+
+
+    <title>AWS China, Big Data and IoT (PART 3)</title>
+
+    <link rel="icon" href="https://cc250080.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://cc250080.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://cc250080.github.io/" aria-label="Go to homepage">CARLES BLOG</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://cc250080.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://cc250080.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Carles Cortes Costa</h4>
+        
+          <h5 class="sidebar-profile-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:carles@carles.cc" target="_blank" rel="noopener" title="eMail">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">eMail</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/cc250080" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cc250080.github.io/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('/img/aws-iot-banner.png')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" id="top">
+          
+            <span class="post-header-cover-caption caption">AWS IoT</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      AWS China, Big Data and IoT (PART 3)
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2017-07-25T00:00:00Z">
+        
+  July 25, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/big-data">Big Data</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/iot">IoT</a>, 
+    
+      <a class="category-link" href="https://cc250080.github.io/categories/aws">AWS</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>For the third part of this series of articles, we will create a small <a href="https://aws.amazon.com/redshift/">Redshift</a> instance, and we will learn how to synchronize data between <a href="https://aws.amazon.com/s3/">S3</a> and <a href="https://aws.amazon.com/redshift/">Redshift</a>.</p>
+<p>The first step will be to use AWS Identity and Access Management <a href="https://aws.amazon.com/iam/">IaM</a> to create a role for <a href="https://aws.amazon.com/redshift/">Redshift</a> to access <a href="https://aws.amazon.com/s3/">S3</a>.</p>
+<p>On the second step we will create a sample <a href="https://aws.amazon.com/redshift/">Redshift</a> cluster, and finally, we will use a special SQL COPY command to ingest the JSON data from <a href="https://aws.amazon.com/s3/">S3</a> into <a href="https://aws.amazon.com/redshift/">Redshift</a>.</p>
+<p><img src="https://cc250080.github.io/img/AWS-IoT-Article.png" alt="Infrastructure Goal" title="IoT Infrastructure"></p>
+<h2 id="create-an-iam-role">Create an IaM Role</h2>
+<p>For any operation that accesses data on another AWS resource, such as using a COPY command to load data from Amazon S3, your cluster needs permission to access the resource and the data on the resource on your behalf. You provide those permissions by using AWS Identity and Access Management, either through an IAM role that is attached to your cluster or by providing the AWS access key for an IAM user that has the necessary permissions.</p>
+<p>To best protect your sensitive data and safeguard your AWS access credentials, we recommend creating an IAM role and attaching it to your cluster.</p>
+<h3 id="to-create-an-iam-role-for-amazon-redshift">To create an IAM Role for Amazon Redshift</h3>
+<ol>
+<li>
+<p>Sign in to the AWS Management Console and open the IAM console at <a href="https://console.aws.amazon.com/iam/">https://console.aws.amazon.com/iam/</a>.</p>
+</li>
+<li>
+<p>In the left navigation pane, choose <strong>Roles</strong>.
+<img src="https://cc250080.github.io/img/PArt3-Role-p2.png" alt="Go to the IaM Service and choose Roles" title="Go to the IaM Service and choose Roles"></p>
+</li>
+<li>
+<p>Choose <strong>Create New Role</strong></p>
+</li>
+<li>
+<p>In the <strong>AWS Service Roles</strong>, choose <strong>Amazon Redshift</strong> and choose <strong>Select</strong>.</p>
+</li>
+<li>
+<p>On the <strong>Attach Policy</strong> page, choose <strong>AmazonS3ReadOnlyAccess</strong>, and then choose <strong>Next Step</strong>.
+<img src="https://cc250080.github.io/img/PArt3-Role-p5.png" alt="Create New Role, Add S3 Read Only Policy" title="Create New Role, Add S3 Read Only Policy"></p>
+</li>
+<li>
+<p>For <strong>Role Name</strong>, type a name for your role. For this tutorial, type <em>myRedshiftS3Role</em>.</p>
+</li>
+<li>
+<p>Review the information, and then choose <strong>Create Role</strong>.</p>
+</li>
+<li>
+<p>Choose the role name for new role.</p>
+</li>
+<li>
+<p>Copy the <strong>Role ARN</strong> to your clipboard—this value is the Amazon Resource Name (ARN) for the role that you just created. You will use that value when you use the SQL COPY command to load data later in this article.
+<img src="https://cc250080.github.io/img/PArt3-Role-p9.png" alt="Copy the ARN Role to your ClipBoard" title="Copy the ARN Role to your ClipBoard"></p>
+</li>
+</ol>
+<h2 id="launch-an-amazon-redshift-cluster">Launch an Amazon Redshift Cluster</h2>
+<ol>
+<li>Sign in to the AWS Management Console and open the Amazon Redshift console at <a href="https://console.aws.amazon.com/redshift/">https://console.aws.amazon.com/redshift/</a>.
+&lt;<strong>NOTE</strong>: Step 2 is only necessary in case you want to create the RedShift Cluster on a non-standard VPC. If you folowed this article and you only have the Standard VPC then please go directly to Step 3&gt;</li>
+<li>On the Amazon Redshift Dashboard, choose <strong>Security -&gt; Subnet Groups -&gt;Create a Cluster Subnet Group</strong>.  There choose your non-standard VPC, create a description and choose Availability Zone and Subnet.
+<img src="https://cc250080.github.io/img/PArt3-RS-p2.png" alt="This step is only necessary if a non-standard VPC is used" title="This step is only necessary if a non-standard VPC is used"></li>
+<li>On the Amazon Redshift Dashboard, choose <strong>Launch Cluster</strong>.</li>
+<li>On the Cluster Details page, enter the following values and then choose <strong>Continue</strong>:
+<strong>Cluster Identifier</strong>: Name your cluster
+<strong>Database Name</strong>: leave this box blank. Amazon Redshift will create a default database named dev.
+<strong>Master User Name</strong>: type masteruser. You will use this username and password to connect to your database after the cluster is available.
+<strong>Master User Password</strong> and <strong>Confirm Password</strong>: type a password for the master user account.
+<img src="https://cc250080.github.io/img/PArt3-RS-p3.png" alt="Name Cluster and Users" title="Name Cluster and Users"></li>
+<li>On the Node Configuration page, select the following values and then choose <strong>Continue</strong>:
+<img src="https://cc250080.github.io/img/PArt3-RS-p4.png" alt="We create a Small RedShift with only one instance" title="We create a Small RedShift with only one instance"></li>
+<li>For the Section <strong>Additional Configuration</strong>. Choose <strong>Encrypt Database</strong> : Yes, The VPC you want to use and also the role we created on Section 1.</li>
+</ol>
+<p><img src="https://cc250080.github.io/img/PArt3-RS-p5.png" alt="This might change depending on your VPC configuration" title="This might change depending on your VPC configuration"></p>
+<p>Your cluster will be created in a few minutes&hellip;</p>
+<p><img src="https://cc250080.github.io/img/PArt3-RS-beingcreated.png" alt="Cluster being created&amp;hellip;" title="Cluster being created..."></p>
+<p>After all parameters become green on the <strong>Cluster Console</strong>, the RedShift is ready to roll. It might happen that the <strong>DB Health</strong> parameter takes a longer time to become green.</p>
+<p><img src="https://cc250080.github.io/img/PArt3-Role-final.png" alt="RedShift is ready" title="RedShift is ready"></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/aws/">AWS</a>
+
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/iot/">IoT</a>
+
+  <a class="tag tag--primary tag--small" href="https://cc250080.github.io/tags/big-data/">Big Data</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2020/08/basic-introduction-to-jira/" data-tooltip="Basic Introduction to Jira" aria-label="NEXT: Basic Introduction to Jira">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-2/" data-tooltip="AWS China, Big Data and IoT (PART 2)" aria-label="PREVIOUS: AWS China, Big Data and IoT (PART 2)">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/cc250080.github.io\/2017\/07\/aws-china-big-data-and-iot-part-3\/';
+        
+          this.page.identifier = 'pileus';
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Carles Cortes Costa. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2020/08/basic-introduction-to-jira/" data-tooltip="Basic Introduction to Jira" aria-label="NEXT: Basic Introduction to Jira">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-2/" data-tooltip="AWS China, Big Data and IoT (PART 2)" aria-label="PREVIOUS: AWS China, Big Data and IoT (PART 2)">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcc250080.github.io%2F2017%2F07%2Faws-china-big-data-and-iot-part-3%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcc250080.github.io%2F2017%2F07%2Faws-china-big-data-and-iot-part-3%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcc250080.github.io%2F2017%2F07%2Faws-china-big-data-and-iot-part-3%2F" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Carles Cortes Costa</h4>
+    
+      <div id="about-card-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Nerd
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://cc250080.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cc250080.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

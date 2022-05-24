@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="429px" height="320px" viewBox="0 0 429 320" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>workflow.svg</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-19%" y1="149.9%" x2="103.5%" y2="-27.5%" id="linearGradient-1">
+            <stop stop-color="#FFAB00" offset="0%"></stop>
+            <stop stop-color="#FFC400" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-23.2%" y1="94.4%" x2="106.7%" y2="15.6%" id="linearGradient-2">
+            <stop stop-color="#36B37E" offset="0%"></stop>
+            <stop stop-color="#57D9A3" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-3">
+            <stop stop-color="#403294" offset="0%"></stop>
+            <stop stop-color="#6554C0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-31.1%" y1="76.3%" x2="194.6%" y2="3.2%" id="linearGradient-4">
+            <stop stop-color="#36B37E" offset="0%"></stop>
+            <stop stop-color="#57D9A3" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-33.8%" y1="107.1%" x2="151.7%" y2="-19.2%" id="linearGradient-5">
+            <stop stop-color="#DE350B" offset="0%"></stop>
+            <stop stop-color="#FF5630" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-–-1" transform="translate(-946.000000, -2138.000000)">
+            <g id="Jira-workflows.png" transform="translate(137.000000, 131.000000)">
+                <g id="Group_14" transform="translate(0.000000, 1535.000000)">
+                    <g id="Group_6">
+                        <g id="workflow.svg" transform="translate(809.000000, 472.000000)">
+                            <circle id="Oval" fill="#D8D8D8" cx="59" cy="10" r="10"></circle>
+                            <path d="M59.5,10.5 L59.5,130.003906 C59.5,135.526754 63.9771525,140.003906 69.5,140.003906 L238.5,140.003906 C244.022847,140.003906 248.5,144.481059 248.5,150.003906 L248.5,290.5 C248.5,296.022847 252.977153,300.5 258.5,300.5 L333.018555,300.5" id="Line-2" stroke="#D8D8D8" stroke-width="4" stroke-linecap="square"></path>
+                            <rect id="Rectangle-2" fill="#0048B0" x="0" y="40" width="120" height="40" rx="6"></rect>
+                            <rect id="Rectangle-2" fill="url(#linearGradient-1)" fill-rule="nonzero" x="89" y="120" width="120" height="40" rx="6"></rect>
+                            <rect id="Rectangle-2" fill="url(#linearGradient-1)" fill-rule="nonzero" x="189" y="200" width="120" height="40" rx="6"></rect>
+                            <rect id="Rectangle-2" fill="url(#linearGradient-2)" fill-rule="nonzero" x="309" y="280" width="120" height="40" rx="6"></rect>
+                            <rect id="Rectangle_196" fill="url(#linearGradient-3)" fill-rule="nonzero" x="230" y="34" width="34.9391304" height="34.9391304" rx="5.835"></rect>
+                            <path d="M253.782795,48.6508108 L247.269751,48.6508108 C247.031988,48.6426072 246.843523,48.4474109 246.843664,48.2095064 L246.843664,40.8138543 C246.842024,40.4814487 246.616152,40.1920714 246.294093,40.1097673 C245.972033,40.0274633 245.635019,40.1729918 245.474099,40.4638543 L239.219751,52.1051586 C239.096369,52.3311633 239.101097,52.6054353 239.232195,52.8270532 C239.363293,53.048671 239.601392,53.1848925 239.858882,53.1855934 L246.40236,53.1855934 C246.640264,53.1854519 246.835461,53.3739173 246.843664,53.6116804 L246.843664,61.0225499 C246.845304,61.3549555 247.071176,61.6443328 247.393236,61.7266369 C247.715295,61.8089409 248.05231,61.6634124 248.213229,61.3725499 L254.467577,49.7160282 C254.587697,49.4838791 254.574613,49.2052386 254.433267,48.9853675 C254.291921,48.7654963 254.043861,48.6379117 253.782795,48.6508108 Z" id="Path_837" fill="#FFFFFF" fill-rule="nonzero"></path>
+                            <rect id="Rectangle_197" fill="url(#linearGradient-4)" fill-rule="nonzero" x="80" y="225" width="54.38" height="54.38" rx="9.22"></rect>
+                            <path d="M117.460058,237 L97.4600579,237 C96.5389331,236.999985 95.655824,237.367263 95.0063701,238.020471 C94.3569163,238.673679 93.9947335,239.558891 94.0000579,240.48 L94.0000579,267.86 C93.9961917,268.410868 94.3203151,268.911265 94.8246096,269.13298 C95.3289041,269.354696 95.9167506,269.255252 96.3200579,268.88 L106.080058,259.68 C106.852654,258.943492 108.067461,258.943492 108.840058,259.68 L118.580058,268.88 C118.988045,269.249725 119.574861,269.345983 120.079586,269.125975 C120.58431,268.905967 120.913215,268.410548 120.920058,267.86 L120.920058,240.48 C120.920089,238.565833 119.374194,237.011001 117.460058,237 Z" id="Path_838" fill="#FFFFFF" fill-rule="nonzero"></path>
+                            <rect id="Rectangle_199" fill="url(#linearGradient-5)" fill-rule="nonzero" x="365" y="156" width="20.19" height="20.19" rx="3.42"></rect>
+                            <path d="M379.345134,161.775177 C377.612001,160.04199 375.005472,159.523487 372.740982,160.461449 C370.476492,161.399411 369,163.609119 369,166.060177 C369,168.511236 370.476492,170.720944 372.740982,171.658905 C375.005472,172.596867 377.612001,172.078364 379.345134,170.345177 C381.711622,167.978615 381.711622,164.141739 379.345134,161.775177 Z" id="Path_841" fill="#FFFFFF" fill-rule="nonzero"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

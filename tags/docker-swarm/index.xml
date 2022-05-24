@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker Swarm on CARLES BLOG</title>
+    <link>https://cc250080.github.io/tags/docker-swarm/</link>
+    <description>Recent content in Docker Swarm on CARLES BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 18 Apr 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://cc250080.github.io/tags/docker-swarm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HA Private Registry with S3 and NFS</title>
+      <link>https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/</link>
+      <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/</guid>
+      <description>&lt;p&gt;Stateless is used as a solution for everything nowadays: scale, containerize, make fault tolerant&amp;hellip; But it is a reality that not everything can be stateless, even if you store the configurations inside the containers, you need to store static files somewhere, you need databases that are stateful by definition, and not all the tools that you will be using are created to be stateless.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Debug Docker Swarm Services</title>
+      <link>https://cc250080.github.io/2017/04/debug-docker-swarm-services/</link>
+      <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://cc250080.github.io/2017/04/debug-docker-swarm-services/</guid>
+      <description>&lt;p&gt;The current stable version of Docker Swarm has an important feature missing, and is the same control over logs available without orchestratrion.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Graphical Interfaces for Docker Swarm</title>
+      <link>https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/</guid>
+      <description>&lt;p&gt;In this article I will explore some different options for graphical interfaces to manage a Docker Swarm cluster and I will show how to install Portainer as a Swarm Service.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Create Docker Swarm on Centos</title>
+      <link>https://cc250080.github.io/2017/04/create-docker-swarm-on-centos/</link>
+      <pubDate>Fri, 07 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://cc250080.github.io/2017/04/create-docker-swarm-on-centos/</guid>
+      <description>&lt;p&gt;The goal of this article is to achieve a clean installation of Docker and Docker Swarm on Centos 7.X, then we will also create our first cluster.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

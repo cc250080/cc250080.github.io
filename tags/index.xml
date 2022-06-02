@@ -2,80 +2,98 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on CARLES BLOG</title>
-    <link>https://cc250080.github.io/tags/</link>
+    <link>https://www.carles.cc/tags/</link>
     <description>Recent content in Tags on CARLES BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://cc250080.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.carles.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ethereum</title>
+      <link>https://www.carles.cc/tags/ethereum/</link>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.carles.cc/tags/ethereum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RocketPool</title>
+      <link>https://www.carles.cc/tags/rocketpool/</link>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.carles.cc/tags/rocketpool/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Jira</title>
-      <link>https://cc250080.github.io/tags/jira/</link>
+      <link>https://www.carles.cc/tags/jira/</link>
       <pubDate>Mon, 17 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/tags/jira/</guid>
+      <guid>https://www.carles.cc/tags/jira/</guid>
       <description></description>
     </item>
     
     <item>
       <title>AWS</title>
-      <link>https://cc250080.github.io/tags/aws/</link>
+      <link>https://www.carles.cc/tags/aws/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/tags/aws/</guid>
+      <guid>https://www.carles.cc/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Big Data</title>
-      <link>https://cc250080.github.io/tags/big-data/</link>
+      <link>https://www.carles.cc/tags/big-data/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/tags/big-data/</guid>
+      <guid>https://www.carles.cc/tags/big-data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IoT</title>
-      <link>https://cc250080.github.io/tags/iot/</link>
+      <link>https://www.carles.cc/tags/iot/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/tags/iot/</guid>
+      <guid>https://www.carles.cc/tags/iot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://cc250080.github.io/tags/docker/</link>
+      <link>https://www.carles.cc/tags/docker/</link>
       <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/tags/docker/</guid>
+      <guid>https://www.carles.cc/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker Swarm</title>
-      <link>https://cc250080.github.io/tags/docker-swarm/</link>
+      <link>https://www.carles.cc/tags/docker-swarm/</link>
       <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/tags/docker-swarm/</guid>
+      <guid>https://www.carles.cc/tags/docker-swarm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GUI</title>
-      <link>https://cc250080.github.io/tags/gui/</link>
+      <link>https://www.carles.cc/tags/gui/</link>
       <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/tags/gui/</guid>
+      <guid>https://www.carles.cc/tags/gui/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Portainer</title>
-      <link>https://cc250080.github.io/tags/portainer/</link>
+      <link>https://www.carles.cc/tags/portainer/</link>
       <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/tags/portainer/</guid>
+      <guid>https://www.carles.cc/tags/portainer/</guid>
       <description></description>
     </item>
     

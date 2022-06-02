@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Portainer on CARLES BLOG</title>
-    <link>https://cc250080.github.io/tags/portainer/</link>
+    <link>https://www.carles.cc/tags/portainer/</link>
     <description>Recent content in Portainer on CARLES BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Apr 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://cc250080.github.io/tags/portainer/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Apr 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.carles.cc/tags/portainer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Graphical Interfaces for Docker Swarm</title>
-      <link>https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/</link>
+      <link>https://www.carles.cc/2017/04/graphical-interfaces-for-docker-swarm/</link>
       <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/</guid>
+      <guid>https://www.carles.cc/2017/04/graphical-interfaces-for-docker-swarm/</guid>
       <description>&lt;p&gt;In this article I will explore some different options for graphical interfaces to manage a Docker Swarm cluster and I will show how to install Portainer as a Swarm Service.&lt;/p&gt;</description>
     </item>
     

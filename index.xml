@@ -2,36 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CARLES BLOG</title>
-    <link>https://cc250080.github.io/</link>
+    <link>https://www.carles.cc/</link>
     <description>Recent content on CARLES BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Aug 2020 15:23:23 +0800</lastBuildDate><atom:link href="https://cc250080.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.carles.cc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Eth2, PoS and RocketPool: Brief Introduction</title>
+      <link>https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/</link>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/</guid>
+      <description>This are complex topics and each one of them would deserve much more than just 1 blog post, nevertheless, I will try here to make a simple as possible explanation of the main concepts and how they relate to each other.
+1. Eth2 and its migration from PoW to PoS (The Merge) If you had any interest in decentralized technologies and the world of Cryprocurrencies, you know about Ethereum, second blockchain in importance and the first one trying to become a global platform to run applications in a decentralized manner.</description>
+    </item>
+    
     <item>
       <title>Accelerate Review Part 1: Introduction, Measurements and Culture</title>
-      <link>https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/</link>
+      <link>https://www.carles.cc/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/</link>
       <pubDate>Wed, 19 Aug 2020 15:23:23 +0800</pubDate>
       
-      <guid>https://cc250080.github.io/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/</guid>
+      <guid>https://www.carles.cc/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/</guid>
       <description>This is a summary of the book &amp;ldquo;ACCELERATE: Building and Scaling High Performing Technology Organizations&amp;rdquo;.
 PREFACE Starting in 2013 a research journey started trying to do something that was not done before, measure the capabilities and practices that, with a focus on software delivery, separate the high performing companies from those that are not, and, using rigorous methods of analysis that until then were reserved only to academia, help the industry to understand and identify the capabilities that actually drive performance in a statistically meaningful way and obtain results that can be seen in their profitability, productivity and market share and also in those effects that measure noncommercial outcomes like effectiveness, eficiency and customer satisfaction.</description>
     </item>
     
     <item>
       <title>Basic Introduction to Jira</title>
-      <link>https://cc250080.github.io/2020/08/basic-introduction-to-jira/</link>
+      <link>https://www.carles.cc/2020/08/basic-introduction-to-jira/</link>
       <pubDate>Mon, 17 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2020/08/basic-introduction-to-jira/</guid>
+      <guid>https://www.carles.cc/2020/08/basic-introduction-to-jira/</guid>
       <description>This article is going to be much less technical than the ones I use to write, the goal is to simply provide a basic introduction to Jira and some of it&amp;rsquo;s main capacities. Hopefully in the near future this article will work as the introduction on a Jira manual that my team and myself are writting for my current employeer, I thought before all that manual is finished it might be useful to share this here.</description>
     </item>
     
     <item>
       <title>AWS China, Big Data and IoT (PART 3)</title>
-      <link>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/</link>
+      <link>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-3/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/</guid>
+      <guid>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-3/</guid>
       <description>&lt;p&gt;For the third part of this series of articles, we will create a small &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt; instance, and we will learn how to synchronize data between &lt;a href=&#34;https://aws.amazon.com/s3/&#34;&gt;S3&lt;/a&gt; and &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The first step will be to use AWS Identity and Access Management &lt;a href=&#34;https://aws.amazon.com/iam/&#34;&gt;IaM&lt;/a&gt; to create a role for &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt; to access &lt;a href=&#34;https://aws.amazon.com/s3/&#34;&gt;S3&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;On the second step we will create a sample &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt; cluster, and finally, we will use a special SQL COPY command to ingest the JSON data from &lt;a href=&#34;https://aws.amazon.com/s3/&#34;&gt;S3&lt;/a&gt; into &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt;.&lt;/p&gt;</description>
@@ -39,19 +49,19 @@ PREFACE Starting in 2013 a research journey started trying to do something that 
     
     <item>
       <title>AWS China, Big Data and IoT (PART 2)</title>
-      <link>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-2/</link>
+      <link>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-2/</link>
       <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-2/</guid>
+      <guid>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-2/</guid>
       <description>&lt;p&gt;Following my previous post, In this post I will try to provide a step by step guide to build a sample solution of an infrastructure for IoT in China.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>AWS China, Big Data and IoT (PART 1)</title>
-      <link>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-1/</link>
+      <link>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-1/</link>
       <pubDate>Tue, 18 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-1/</guid>
+      <guid>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-1/</guid>
       <description>&lt;p&gt;Apart from Docker and DevOps methodologies, the other big topics that I enjoy the most currently at work are Cloud Architecture and Big Data/IoT.&lt;/p&gt;
 &lt;p&gt;In this article I would like to describe a little bit the situation of AWS in China, specially what is the current status of Services Available and what is the forecast of improvement that we can hopefully expect for the next months.&lt;/p&gt;
 &lt;p&gt;I will also try to provide a step by step guide to create an infrastructure made with IoT in mind, where we can achieve an scalable, secure and ServerLess installation using only AWS Services that are currently available in China.&lt;/p&gt;</description>
@@ -59,46 +69,46 @@ PREFACE Starting in 2013 a research journey started trying to do something that 
     
     <item>
       <title>HA Private Registry with S3 and NFS</title>
-      <link>https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/</link>
+      <link>https://www.carles.cc/2017/04/ha-private-registry-with-s3-and-nfs/</link>
       <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/</guid>
+      <guid>https://www.carles.cc/2017/04/ha-private-registry-with-s3-and-nfs/</guid>
       <description>&lt;p&gt;Stateless is used as a solution for everything nowadays: scale, containerize, make fault tolerant&amp;hellip; But it is a reality that not everything can be stateless, even if you store the configurations inside the containers, you need to store static files somewhere, you need databases that are stateful by definition, and not all the tools that you will be using are created to be stateless.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Debug Docker Swarm Services</title>
-      <link>https://cc250080.github.io/2017/04/debug-docker-swarm-services/</link>
+      <link>https://www.carles.cc/2017/04/debug-docker-swarm-services/</link>
       <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/04/debug-docker-swarm-services/</guid>
+      <guid>https://www.carles.cc/2017/04/debug-docker-swarm-services/</guid>
       <description>&lt;p&gt;The current stable version of Docker Swarm has an important feature missing, and is the same control over logs available without orchestratrion.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Graphical Interfaces for Docker Swarm</title>
-      <link>https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/</link>
+      <link>https://www.carles.cc/2017/04/graphical-interfaces-for-docker-swarm/</link>
       <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/04/graphical-interfaces-for-docker-swarm/</guid>
+      <guid>https://www.carles.cc/2017/04/graphical-interfaces-for-docker-swarm/</guid>
       <description>&lt;p&gt;In this article I will explore some different options for graphical interfaces to manage a Docker Swarm cluster and I will show how to install Portainer as a Swarm Service.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Create Docker Swarm on Centos</title>
-      <link>https://cc250080.github.io/2017/04/create-docker-swarm-on-centos/</link>
+      <link>https://www.carles.cc/2017/04/create-docker-swarm-on-centos/</link>
       <pubDate>Fri, 07 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/04/create-docker-swarm-on-centos/</guid>
+      <guid>https://www.carles.cc/2017/04/create-docker-swarm-on-centos/</guid>
       <description>&lt;p&gt;The goal of this article is to achieve a clean installation of Docker and Docker Swarm on Centos 7.X, then we will also create our first cluster.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>First Post</title>
-      <link>https://cc250080.github.io/2017/02/first-post/</link>
+      <link>https://www.carles.cc/2017/02/first-post/</link>
       <pubDate>Sun, 26 Feb 2017 00:00:05 +0800</pubDate>
       
-      <guid>https://cc250080.github.io/2017/02/first-post/</guid>
+      <guid>https://www.carles.cc/2017/02/first-post/</guid>
       <description>This is the first post on my new blog www.carles.cc. I will try to use this platform to fix some of the knowledge I generate through my work and hobbies in fields like I.T infrastructure, DevOps, CI/CD, hosting, docker, Raspberry Pi, Software Development and others.</description>
     </item>
     

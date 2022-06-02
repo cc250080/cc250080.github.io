@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RocketPool on CARLES BLOG</title>
+    <link>https://www.carles.cc/categories/rocketpool/</link>
+    <description>Recent content in RocketPool on CARLES BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 07 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.carles.cc/categories/rocketpool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Eth2, PoS and RocketPool: Brief Introduction</title>
+      <link>https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/</link>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/</guid>
+      <description>This are complex topics and each one of them would deserve much more than just 1 blog post, nevertheless, I will try here to make a simple as possible explanation of the main concepts and how they relate to each other.
+1. Eth2 and its migration from PoW to PoS (The Merge) If you had any interest in decentralized technologies and the world of Cryprocurrencies, you know about Ethereum, second blockchain in importance and the first one trying to become a global platform to run applications in a decentralized manner.</description>
+    </item>
+    
+  </channel>
+</rss>

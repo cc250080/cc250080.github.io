@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AWS on CARLES BLOG</title>
-    <link>https://cc250080.github.io/categories/aws/</link>
+    <link>https://www.carles.cc/categories/aws/</link>
     <description>Recent content in AWS on CARLES BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://cc250080.github.io/categories/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.carles.cc/categories/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS China, Big Data and IoT (PART 3)</title>
-      <link>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/</link>
+      <link>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-3/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-3/</guid>
+      <guid>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-3/</guid>
       <description>&lt;p&gt;For the third part of this series of articles, we will create a small &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt; instance, and we will learn how to synchronize data between &lt;a href=&#34;https://aws.amazon.com/s3/&#34;&gt;S3&lt;/a&gt; and &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The first step will be to use AWS Identity and Access Management &lt;a href=&#34;https://aws.amazon.com/iam/&#34;&gt;IaM&lt;/a&gt; to create a role for &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt; to access &lt;a href=&#34;https://aws.amazon.com/s3/&#34;&gt;S3&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;On the second step we will create a sample &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt; cluster, and finally, we will use a special SQL COPY command to ingest the JSON data from &lt;a href=&#34;https://aws.amazon.com/s3/&#34;&gt;S3&lt;/a&gt; into &lt;a href=&#34;https://aws.amazon.com/redshift/&#34;&gt;Redshift&lt;/a&gt;.&lt;/p&gt;</description>
@@ -20,19 +20,19 @@
     
     <item>
       <title>AWS China, Big Data and IoT (PART 2)</title>
-      <link>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-2/</link>
+      <link>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-2/</link>
       <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-2/</guid>
+      <guid>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-2/</guid>
       <description>&lt;p&gt;Following my previous post, In this post I will try to provide a step by step guide to build a sample solution of an infrastructure for IoT in China.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>AWS China, Big Data and IoT (PART 1)</title>
-      <link>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-1/</link>
+      <link>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-1/</link>
       <pubDate>Tue, 18 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/07/aws-china-big-data-and-iot-part-1/</guid>
+      <guid>https://www.carles.cc/2017/07/aws-china-big-data-and-iot-part-1/</guid>
       <description>&lt;p&gt;Apart from Docker and DevOps methodologies, the other big topics that I enjoy the most currently at work are Cloud Architecture and Big Data/IoT.&lt;/p&gt;
 &lt;p&gt;In this article I would like to describe a little bit the situation of AWS in China, specially what is the current status of Services Available and what is the forecast of improvement that we can hopefully expect for the next months.&lt;/p&gt;
 &lt;p&gt;I will also try to provide a step by step guide to create an infrastructure made with IoT in mind, where we can achieve an scalable, secure and ServerLess installation using only AWS Services that are currently available in China.&lt;/p&gt;</description>
@@ -40,10 +40,10 @@
     
     <item>
       <title>HA Private Registry with S3 and NFS</title>
-      <link>https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/</link>
+      <link>https://www.carles.cc/2017/04/ha-private-registry-with-s3-and-nfs/</link>
       <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cc250080.github.io/2017/04/ha-private-registry-with-s3-and-nfs/</guid>
+      <guid>https://www.carles.cc/2017/04/ha-private-registry-with-s3-and-nfs/</guid>
       <description>&lt;p&gt;Stateless is used as a solution for everything nowadays: scale, containerize, make fault tolerant&amp;hellip; But it is a reality that not everything can be stateless, even if you store the configurations inside the containers, you need to store static files somewhere, you need databases that are stateful by definition, and not all the tools that you will be using are created to be stateless.&lt;/p&gt;</description>
     </item>
     

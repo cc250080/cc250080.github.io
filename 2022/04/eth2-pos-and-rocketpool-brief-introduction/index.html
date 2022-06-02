@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Eth2, PoS and RocketPool: Brief Introduction",
+  
+  "image": "https://www.carles.cc/img/docker-contributors.png",
+  
+  "datePublished": "2022-04-07T00:00:00Z",
+  "dateModified": "2022-04-07T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "Carles Cortes Costa",
+    
+    "image": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/www.carles.cc\/2022\/04\/eth2-pos-and-rocketpool-brief-introduction\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CARLES BLOG",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d"
+    }
+    
+  },
+  "description": "This are complex topics and each one of them would deserve much more than just 1 blog post, nevertheless, I will try here to make a simple as possible explanation of the main concepts and how they relate to each other.\n1. Eth2 and its migration from PoW to PoS (The Merge) If you had any interest in decentralized technologies and the world of Cryprocurrencies, you know about Ethereum, second blockchain in importance and the first one trying to become a global platform to run applications in a decentralized manner.",
+  "keywords": ["Ethereum, RocketPool, PoS"]
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.99.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Carles Cortes Costa">
+<meta name="keywords" content="Ethereum, RocketPool, PoS">
+<meta name="description" content="This are complex topics and each one of them would deserve much more than just 1 blog post, nevertheless, I will try here to make a simple as possible explanation of the main concepts and how they relate to each other.
+1. Eth2 and its migration from PoW to PoS (The Merge) If you had any interest in decentralized technologies and the world of Cryprocurrencies, you know about Ethereum, second blockchain in importance and the first one trying to become a global platform to run applications in a decentralized manner.">
+
+
+<meta property="og:description" content="This are complex topics and each one of them would deserve much more than just 1 blog post, nevertheless, I will try here to make a simple as possible explanation of the main concepts and how they relate to each other.
+1. Eth2 and its migration from PoW to PoS (The Merge) If you had any interest in decentralized technologies and the world of Cryprocurrencies, you know about Ethereum, second blockchain in importance and the first one trying to become a global platform to run applications in a decentralized manner.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eth2, PoS and RocketPool: Brief Introduction">
+<meta name="twitter:title" content="Eth2, PoS and RocketPool: Brief Introduction">
+<meta property="og:url" content="https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/">
+<meta property="twitter:url" content="https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/">
+<meta property="og:site_name" content="CARLES BLOG">
+<meta property="og:description" content="This are complex topics and each one of them would deserve much more than just 1 blog post, nevertheless, I will try here to make a simple as possible explanation of the main concepts and how they relate to each other.
+1. Eth2 and its migration from PoW to PoS (The Merge) If you had any interest in decentralized technologies and the world of Cryprocurrencies, you know about Ethereum, second blockchain in importance and the first one trying to become a global platform to run applications in a decentralized manner.">
+<meta name="twitter:description" content="This are complex topics and each one of them would deserve much more than just 1 blog post, nevertheless, I will try here to make a simple as possible explanation of the main concepts and how they relate to each other.
+1. Eth2 and its migration from PoW to PoS (The Merge) If you had any interest in decentralized technologies and the world of Cryprocurrencies, you know about Ethereum, second blockchain in importance and the first one trying to become a global platform to run applications in a decentralized manner.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2022-04-07T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-04-07T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Ethereum">
+    
+      <meta property="article:section" content="RocketPool">
+    
+      <meta property="article:section" content="PoS">
+    
+  
+  
+    
+      <meta property="article:tag" content="Ethereum">
+    
+      <meta property="article:tag" content="RocketPool">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@carles6">
+
+
+  <meta name="twitter:creator" content="@carles6">
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=640">
+
+
+
+
+  <meta property="og:image" content="https://www.carles.cc/img/docker-contributors.png">
+  <meta property="twitter:image" content="https://www.carles.cc/img/docker-contributors.png">
+
+
+  <meta property="og:image" content="https://www.carles.cc/img/eth_upgrade_rhino.png">
+  <meta property="twitter:image" content="https://www.carles.cc/img/eth_upgrade_rhino.png">
+
+
+    <title>Eth2, PoS and RocketPool: Brief Introduction</title>
+
+    <link rel="icon" href="https://www.carles.cc/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://www.carles.cc/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://www.carles.cc/" aria-label="Go to homepage">CARLES BLOG</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://www.carles.cc/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://www.carles.cc/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Carles Cortes Costa</h4>
+        
+          <h5 class="sidebar-profile-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.carles.cc/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.carles.cc/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.carles.cc/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:carles@carles.cc" target="_blank" rel="noopener" title="eMail">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">eMail</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.carles.cc/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/cc250080" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.carles.cc/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('/img/docker-contributors.png')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" id="top">
+          
+            <span class="post-header-cover-caption caption">The beautiful Docker ecosystem</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Eth2, PoS and RocketPool: Brief Introduction
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-04-07T00:00:00Z">
+        
+  April 7, 2022
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://www.carles.cc/categories/ethereum">Ethereum</a>, 
+    
+      <a class="category-link" href="https://www.carles.cc/categories/rocketpool">RocketPool</a>, 
+    
+      <a class="category-link" href="https://www.carles.cc/categories/pos">PoS</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>This are complex topics and each one of them would deserve much more than just 1 blog post, nevertheless, I will try here to make a simple as possible explanation of the main concepts and how they relate to each other.</p>
+<h2 id="1-eth2-and-its-migration-from-pow-to-pos-the-merge">1. Eth2 and its migration from PoW to PoS (The Merge)</h2>
+<p>If you had any interest in decentralized technologies and the world of <strong>Cryprocurrencies</strong>, you know about <strong>Ethereum</strong>, second blockchain in importance and the first one trying to become a global platform to run applications in a decentralized manner. <strong>Ethereum</strong> was conceived in 2013 by <em>Vitalik Buterin</em> and it used the technology available and understood at that time, PoW (Proof of Work), which was already in use succesfully by other blockchains like <strong>Bitcoin</strong> or <strong>Litecoin</strong>, nevertheless, almost since its inception it was agreed that in the future a migration to another kind of consensus algorythm (I explain what is this below) was needed.</p>
+<p>The main problems PoW presented for <strong>Ethereum</strong> are its huge energy consumption and its poor performance in terms of tps (transactions per second). It was decided that a migration or transition to PoS (Proof of Stake) was necessary, and now, in 2022, after many years if work we are about to see the first results of that transition in production systems.</p>
+<p>Nevertheless, PoS also come with its own set of problems and complexities&hellip;</p>
+<p><img src="https://www.carles.cc/img/ehtereum2merge.png" alt="Ethereum 2 merge"></p>
+<h2 id="2-pow-versus-pos">2. PoW versus PoS</h2>
+<p>The focus of this article is to talk about Ethereum2, its switch to PoS and how RocketPool can help to solve some of the inherent problems of this switch, that is why I will leave some important topics out of scope, like centralization issues on PoW mining or organizational DAO attacks on PoS just to name a few of the more deep topics missing here. I will try to keep things as simple as possible.</p>
+<p>Reaching consensus in the crypto space and between computers isn&rsquo;t than different from reaching a consensus between a group of friends. PoW uses hashing power (compute resources) to solve a random number problem in which the higher the computational power the more possibilities you have to solve the block and process new transactions into the blockchain. PoS on the other side uses the amount of staked tokens (money, financial resources) in a similar fashion, the more coins you have staked the more possibilities you have to be the node introducing new transactions (validate a new block).</p>
+<p>The main challenge between different consensus algorithm is to reach high levels, and equilibrium, between what is called the blockchain trilema: Security, Speed and Decentralization.</p>
+<p>We know that PoW is unlikely to ever reach high speeds in terms of transactions per second, it is very secure and has certain problems regarding decentralization (51% attacks or minning pool concentration mostly) on top of that, the usage of computer resources to process numbers is what produces the high electricity usage of blockchains like Bitcoin.</p>
+<p>On the other hand, PoS can reach easily higher speeds since it does not need the computational Work that PoW enforces to find the miner that should be rewarded and can do sharding (dividing the blockchain in small blocks) to achieve even greater speeds, security, or protection against 51% attacks, is similar to that of PoW, while in one consesus algorithm the attacker would need to have control over 51% of the total resources stacked, on PoW the attacker would need 51% of all the hashing(processing) power, and in both cases that is something equally expensive to obtain. <strong>The weakness of PoS is in the level of decentralization that can be reached</strong>.</p>
+<p>So in general, when you think abuot PoS and achieving similar levels of decentralization to those of PoW what you want to achieve is a high umber of Validators sharing between them the total amount that is being stacked.</p>
+<p><img src="https://www.carles.cc/img/powvspos.webp" alt="PoW vs PoS"></p>
+<p>It is important to mention that while you want a high number of validators the total can not be infinitely high, since that would make the data transmission between nodes not efficient, that is why in the case of ethereum it was decided that a validator node needs to stake 32 ethereums. This number is suficiently high that the number of nodes will be mantained under control and also protects the network against some nodes having much more value stacked than others, which is something that can happen on Delegated Proof of Stake blockchains like <em>Luna</em> or <em>Solana</em>.</p>
+<h2 id="3-rocketpool-and-its-push-towards-more-decentralization">3. RocketPool and its push towards more Decentralization</h2>
+<p>If we look at the total amount of nodes on <strong>Ethereum 2</strong> and the Total Value Locked(TVL) its easy to see that the numbers describe a healthy transition even before the merge has already happened. The problem here is the level of decentralization. Centralized exchanges like <em>Kraken</em> are offering stacking services thus controlling a huge percentage of the existing nodes and on top of that a new stacking platform called <em>Lido Finance</em> has appeared to offer end customer tokenized stacking services, they have become so big that <em>Lido</em> controls now more than a third of the existing validators.</p>
+<p><img src="https://www.carles.cc/img/stackedeth.jpg" alt="Number of Eths Stacked"></p>
+<p>If an end user wants to help decentralize the Ethereum network by running a node by himself he might find different problems, for starters that not everyone can afford 32 ETHs and also the technical difficulties of installing and running a validator. This is where <strong>RocketPool</strong> shines, trying to make easy for everyone to run its own validator and helping decentralize the Ethereum ecosystem.</p>
+<p>This is how <strong>RocketPool</strong> helps the Ethereum ecosystem and validators:</p>
+<ul>
+<li>You only need 16 Eths to run a node</li>
+<li>The hardware is cheap and easily available compared with <strong>Bitcoin</strong> mining ASICs</li>
+<li>16 extra Eth provided to the validator node from users wanting to stake, this will produce extra rewards for the node operator</li>
+<li>Node operators will also receive extra rewards from the RPL tokens (this tokens are used as an additional security deposit from the node operators) increasing the gains from running a node</li>
+<li>The whole installation is scripted and very well documented to make it easier</li>
+</ul>
+<p>There is a final positive influence that <strong>RocketPool</strong> is having in the <strong>Ethereum2</strong> ecosystem, is helping to increase the variety of <strong>Ethereum2</strong> clients running the PoS blockchain, this is important because if a huge proportion of Ethereum2 runs on the same client and if this client has an issue, a security flaw for example, it can endanger the whole network. While most of <em>lido finance</em> is running using the Prism client <strong>RocketPool</strong> rotates the client that its node operators run (if they accept this mechanism) producing a broader distribution of nodes using different clients.</p>
+<p><img src="https://www.carles.cc/img/rocketpooldiagram.webp" alt="RocketPool"></p>
+<p>In resume, PoS can solve some important issues traditionally associated with PoW blockchains like <strong>Bitcoin</strong> and <strong>Rocketpool</strong> helps individual users to run their own node, earn higher rewards and fight centralization issues that might arise in the Ethereum2 world after the merge.</p>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://www.carles.cc/tags/ethereum/">Ethereum</a>
+
+  <a class="tag tag--primary tag--small" href="https://www.carles.cc/tags/rocketpool/">RocketPool</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.carles.cc/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" data-tooltip="Accelerate Review Part 1: Introduction, Measurements and Culture" aria-label="PREVIOUS: Accelerate Review Part 1: Introduction, Measurements and Culture">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/www.carles.cc\/2022\/04\/eth2-pos-and-rocketpool-brief-introduction\/';
+        
+          this.page.identifier = 'pileus';
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Carles Cortes Costa. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://www.carles.cc/2020/08/accelerate-review-part-1-introduction-measurements-and-culture/" data-tooltip="Accelerate Review Part 1: Introduction, Measurements and Culture" aria-label="PREVIOUS: Accelerate Review Part 1: Introduction, Measurements and Culture">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.carles.cc/2022/04/eth2-pos-and-rocketpool-brief-introduction/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.carles.cc%2F2022%2F04%2Feth2-pos-and-rocketpool-brief-introduction%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.carles.cc%2F2022%2F04%2Feth2-pos-and-rocketpool-brief-introduction%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.carles.cc%2F2022%2F04%2Feth2-pos-and-rocketpool-brief-introduction%2F" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/598c6e3a97498cb3bba12f06e557c91d?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Carles Cortes Costa</h4>
+    
+      <div id="about-card-bio">Site to write about stuff I like; including <strong>Open-Source</strong> <strong>DEVOPS</strong> and <strong>WEB3</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Nerd
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://www.carles.cc/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://www.carles.cc/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
